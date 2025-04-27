@@ -1,11 +1,13 @@
 import React from 'react';
 import style from 'components/common/Login/Login.module.css'
-import Marquee from "react-fast-marquee";
-import image from 'assets/images/Kurta1.jpg';
 import background from 'assets/images/background.png'
 import { useForm } from 'react-hook-form';
 import { signupUser } from 'services/operations/userAPI';
 import { Link, useNavigate } from 'react-router-dom';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
+import slideImages from 'assets/data/heroData'
 
 const Signup = () => {
     const {
@@ -24,18 +26,21 @@ const Signup = () => {
     };
 
 
+
+
     return (
         <div className={style.Login} style={{ backgroundImage: `url(${background})` }}>
             <div>
                 <div>
-                    <Marquee>
-                        <img src={image} alt='tmepIMage' />
-                        <img src={image} alt='tmepIMage' />
-                        <img src={image} alt='tmepIMage' />
-                        <img src={image} alt='tmepIMage' />
-                        <img src={image} alt='tmepIMage' />
-                        <img src={image} alt='tmepIMage' />
-                    </Marquee>
+                    <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={false} interval={3000} transitionTime={500}>
+                                            {slideImages.map((image, index) => (
+                                                <div key={index} className={style.Slide}>
+                                                    <img src={image.url} alt={image.alt} className={style.SlideImage} />
+                                                    <h2>{image.heading}</h2>
+                                                    <h3>{image.detail}</h3>
+                                                </div>
+                                            ))}
+                                        </Carousel>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <h2>Sign Up</h2>

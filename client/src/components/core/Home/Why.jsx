@@ -14,7 +14,7 @@ const Why = () => {
             </div>
             <div>
                 <IoCardOutline />
-                <p>Cash on Delivery</p>
+                <p>Hassel free payments</p>
             </div>
             <div>
                 <MdOutlineWorkspacePremium />

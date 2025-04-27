@@ -7,10 +7,7 @@ import { signinUser } from 'services/operations/userAPI';
 import { Link } from 'react-router-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import banner1 from 'assets/images/banners/banner-1.png'
-import banner2 from 'assets/images/banners/banner-2.png';
-import banner3 from 'assets/images/banners/banner-3.png';
-import banner4 from 'assets/images/banners/banner-4.png';
+import slideImages from 'assets/data/heroData'
 
 const Login = () => {
 	const {
@@ -25,20 +22,6 @@ const Login = () => {
 		signinUser(data, dispatch);
 	};
 
-	const slideImages = [{
-		url: banner1,
-		alt: 'banner1'
-	}, {
-		url: banner2,
-		alt: 'banner2'
-	}, {
-		url: banner3,
-		alt: 'banner3'
-	}, {
-		url: banner4,
-		alt: 'banner4'
-	}];
-
 	return (
 		<div className={style.Login} style={{ backgroundImage: `url(${background})` }}>
 			<div>
@@ -47,8 +30,8 @@ const Login = () => {
 						{slideImages.map((image, index) => (
 							<div key={index} className={style.Slide}>
 								<img src={image.url} alt={image.alt} className={style.SlideImage} />
-								<h2>Heading</h2>
-								<h3>Detail</h3>
+								<h2>{image.heading}</h2>
+								<h3>{image.detail}</h3>
 							</div>
 						))}
 					</Carousel>
