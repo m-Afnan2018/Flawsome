@@ -34,6 +34,8 @@ const HeroSlider = () => {
                 {slideImages.map((image, index) => (
                     <div key={index} className={style.Slide}>
                         <img src={image.url} alt={image.alt} className={style.SlideImage} />
+                        <h2>Heading</h2>
+                        <h3>Detail</h3>
                     </div>
                 ))}
             </Carousel>
