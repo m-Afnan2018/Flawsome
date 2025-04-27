@@ -4,7 +4,7 @@ const cloudinary = require('cloudinary').v2;
 
 const uploadMedia = async (file, folder, quality) => {
     let fold = getPublicId(folder);
-    const option = { folder: `URI_Mackenzie/${fold}/` }
+    const option = { folder: `Flawsome/${fold}/` }
     if (quality) {
         option.quality = quality;
     }

@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form';
 import style from './Admin.module.css';
 import { addCategory, updateCategory } from 'services/operations/productAPI';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { MdDelete } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux'
 
 const AddCategory = () => {
 
