@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { MdOutlineCall, MdOutlineLocationOn, MdOutlineMailOutline } from 'react-icons/md';
 import { FaFacebookF, FaInstagram, FaPinterest, FaTwitter, FaWhatsapp, FaYoutube } from "react-icons/fa";
 import logo from 'assets/images/shortLogo.svg';
+import userData from 'assets/data/userData.json';
 
 const Footer = () => {
     const navigate = useNavigate();
@@ -13,32 +14,32 @@ const Footer = () => {
                 <div className={style.contactInfo}>
                     <div className={style.contactItem}>
                         <MdOutlineLocationOn className={style.icon} />
-                        <a href='/'>Visit Us</a>
+                        <a href={userData.location}>Visit Us</a>
                     </div>
                     <div className={style.contactItem}>
                         <MdOutlineMailOutline className={style.icon} />
-                        <a href='mailto:m.afnan2018@gmail.com'>@Flawsome</a>
+                        <a href={userData.email}>@Flawsome</a>
                     </div>
                     <div className={style.contactItem}>
                         <MdOutlineCall className={style.icon} />
-                        <a href='tel:9554522980'>+91 9554522980<br />Mon - Sat - 11:00 am to 6:00 pm (IST)</a>
+                        <a href={`tel:${userData.phone}`}>+91 {userData.phone}<br />Mon - Sat - 11:00 am to 6:00 pm (IST)</a>
                     </div>
                 </div>
                 <div className={style.aboutUs}>
                     <h2>About Us</h2>
                     <div className={style.links}>
-                        <a href='/aboutUs'>Our Story</a>
-                        <a href='/contactUs'>Contact Us</a>
-                        <a href='/privacy'>Privacy Policy</a>
-                        <a href='/refund'>Refund Policy</a>
+                        <p onClick={() => navigate('/aboutUs')}>Our Story</p>
+                        <p onClick={() => navigate('/contactUs')}>Contact Us</p>
+                        <p onClick={() => navigate('/privacy')}>Privacy Policy</p>
+                        <p onClick={() => navigate('/refund')}>Refund Policy</p>
                     </div>
                     <div className={style.socialIcons}>
-                        <a href="/"><FaWhatsapp/></a>
-                        <a href='/'><FaFacebookF /></a>
-                        <a href='/'><FaTwitter /></a>
-                        <a href='/'><FaInstagram /></a>
-                        <a href='/'><FaPinterest /></a>
-                        <a href='/'><FaYoutube /></a>
+                        <a href={userData.whatsapp}><FaWhatsapp /></a>
+                        <a href={userData.facebook}><FaFacebookF /></a>
+                        <a href={userData.twitter}><FaTwitter /></a>
+                        <a href={userData.instagram}><FaInstagram /></a>
+                        <a href={userData.pinterest}><FaPinterest /></a>
+                        <a href={userData.youtube}><FaYoutube /></a>
                     </div>
                 </div>
                 <div className={style.quickLinks}>

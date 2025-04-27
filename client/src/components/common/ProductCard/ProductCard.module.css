@@ -103,3 +103,24 @@
     font-size: 0.85rem;
     font-family: "Edu NSW ACT Foundation", cursive;
 }
+
+@media screen and (max-width: 768px) {
+    .ProductCard {
+        min-width: 200px;
+        height: -moz-fit-content;
+        height: fit-content;
+    }
+    .ProductCard .img {
+        height: 20rem;
+    }
+    .ProductCard h3 {
+        font-size: 1.5rem;
+    }
+    .ProductCard h4 {
+        font-size: 0.85rem;
+    }
+    .ProductCard button {
+        font-size: 0.75rem;
+    }
+    
+}
