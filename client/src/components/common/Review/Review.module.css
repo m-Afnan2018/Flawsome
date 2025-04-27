@@ -1,0 +1,15 @@
+.form>div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.form>div>div:nth-last-child(1) label{
+    align-self: center;
+}
+
+.form label{
+    font-family: 'Tilt Warp';
+    font-weight: 100;
+}

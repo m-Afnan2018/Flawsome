@@ -1,0 +1,276 @@
+/* Hero slider */
+.HeroSlider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.SwiperContainer {
+    width: 100%;
+}
+
+.SlideImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Slideshow */
+.SlideShow>img {
+    object-fit: cover;
+    width: 100%;
+    padding: 4rem 1rem 1rem 0;
+}
+
+/* Category */
+.category {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: #6f266999;
+    width: 100%;
+    color: var(--sunset);
+    scrollbar-width: 2px;
+    padding: 0.5rem 2rem;
+    box-shadow: 0px 4px 12px 2px;
+    overflow-x: auto;
+}
+
+.category div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.category img {
+    width: 150px;
+    border-radius: 100%;
+    aspect-ratio: 1;
+    height: 100%;
+    padding: 0;
+}
+
+.category::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+}
+
+.category p {
+    color: var(--eggshell);
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    text-wrap: nowrap;
+    padding: 0.15rem 0.5rem;
+    font-size: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.category div:hover p {
+    background-color: var(--sunset);
+    color: var(--delft-blue);
+    border-color: var(--cambridge-blue);
+    transition: all 200ms ease-in-out;
+}
+
+.category div:hover img {
+    border: 4px solid var(--sunset);
+    transition: all 200ms ease-in-out;
+}
+
+/* Why */
+.Why {
+    display: flex;
+    padding: 2rem 1rem;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    background: var(--eggshell);
+    box-shadow: 0px 4px 8px 4px;
+}
+
+.Why>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.Why svg {
+    font-size: 2rem;
+    color: var(--delft-blue);
+}
+
+.Why p {
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: var(--delft-blue);
+    text-align: center;
+    font-family: 'Edu NSW ACT Foundation';
+}
+
+/* Showcase */
+.Showcase h1 {
+    color: var(--delft-blue);
+    font-family: 'Lora';
+    margin-bottom: 1rem;
+    align-self: flex-start;
+    margin-left: 1rem;
+    border-bottom: 2px solid var(--delft-blue);
+}
+
+.Showcase {
+    background: #b7281d87;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    padding: 1rem 0;
+    border: 2px solid var(--delft-blue);
+}
+
+.singleSlide {
+    padding: 1rem;
+}
+
+/* Review */
+.Review {
+    display: flex;
+    padding: 2rem 0rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    align-self: stretch;
+    background: #33072fe3;
+    color: var(--sunset);
+}
+
+.Review>p {
+    font-family: 'Tilt Warp';
+    color: var(--sunset);
+    text-align: center;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.Review>div {
+    width: 70%;
+}
+
+.singleReview {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    background: var(--cambridge-blue);
+    border-radius: 0.5rem;
+    justify-self: center;
+}
+
+.singleReview>img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.singleReview>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    color: var(--delft-blue);
+}
+
+.singleReview>div>div {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.singleReview>div img {
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    max-height: 4rem;
+    padding: 0;
+    width: auto;
+}
+
+.singleReview p {
+    text-align: center;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+    font-size: 1rem;
+}
+
+.singleReview span {
+    text-shadow: 0px 0px 4px #492246;
+}
+
+@media (max-width: 768px) {
+    .category img {
+        width: 65px;
+    }
+
+    .Why svg {
+        font-size: 2rem;
+    }
+
+    .Why p {
+        font-size: 0.9rem;
+        font-weight: 400;
+    }
+
+    .Why div {
+        gap: 1rem;
+
+    }
+
+    .Why {
+        padding: 2rem 1rem;
+        gap: 0.5rem;
+    }
+
+    .category {
+        padding: 1rem;
+    }
+
+    .Review>div {
+        width: 90%;
+    }
+
+    .singleReview {
+        flex-direction: column;
+    }
+
+    .singleReview>img {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+    }
+
+    .singleReview>div {
+        align-items: center;
+        padding: 0.25rem;
+        width: 100%;
+    }
+
+    .singleReview>div>div {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.25rem;
+    }
+}

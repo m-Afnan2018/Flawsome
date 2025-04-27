@@ -1,0 +1,302 @@
+/* Product Detail */
+.ProductDetail {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.ProductDetail>div {
+    width: 100%;
+}
+
+.ProductDetail>div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.ProductDetail>div:nth-child(1)>div:nth-child(2) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ProductDetail>div:nth-child(1)>div>button {
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--delft-blue);
+}
+
+.ProductDetail>div:nth-child(1)>div>button:nth-child(1) {
+    border-radius: 6.5rem 0 0 6.5rem;
+}
+
+.ProductDetail>div:nth-child(1)>div>button:nth-child(2) {
+    border-radius: 0 6.5rem 6.5rem 0;
+}
+
+.ProductDetail>div:nth-child(2) {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    color: var(--delft-blue);
+}
+
+.ProductDetail h2 {
+    font-family: 'Lora';
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.ProductDetail>div>h3:nth-of-type(1) {
+    background: var(--cambridge-blue);
+    color: var(--delft-blue);
+    font-size: 0.75rem;
+    width: fit-content;
+    align-self: flex-start;
+}
+
+.ProductDetail h3 {
+    background: var(--delft-blue);
+    color: var(--eggshell);
+    padding: 0.5rem;
+    width: fit-content;
+    border-radius: 0.25rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: 'Lora';
+    font-weight: 600;
+    background: var(--delft-blue);
+    color: var(--eggshell);
+    padding: 0.5rem;
+    width: -moz-fit-content;
+    width: fit-content;
+    border-radius: 0.25rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: 'Lora';
+    font-weight: 600;
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.ProductDetail h4 {
+    font-weight: 300;
+    text-transform: capitalize;
+    font-family: 'Inter';
+    font-size: 0.875rem;
+}
+
+.ProductDetail .sizeButton {
+    border-radius: 100%;
+    aspect-ratio: 1 / 1;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--delft-blue);
+    color: var(--cambridge-blue);
+}
+
+.ProductDetail .sizeButton:hover {
+    background: var(--cambridge-blue);
+    color: var(--delft-blue);
+}
+.ProductDetail .sizeButton.active {
+    background: var(--cambridge-blue);
+    color: var(--delft-blue);
+}
+
+.ProductDetail .priceTag>h2 {
+    font-size: 1.5rem;
+    letter-spacing: 0px;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.ProductDetail .priceTag>h3 {
+    all: unset;
+    text-decoration: line-through;
+    font-size: 0.875rem;
+    letter-spacing: 0;
+    font-weight: 600;
+}
+
+.ProductDetail ul {
+    margin-left: 1rem;
+}
+
+.ProductDetail .thumbnailClass img {
+    object-fit: contain;
+}
+
+.ProductDetail .originalClass img {
+    object-fit: contain;
+}
+
+.priceTag {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    align-items: flex-end;
+}
+
+.priceTag>span {
+    text-decoration: line-through;
+    font-weight: 700;
+}
+
+.ProductDetail>div:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ProductDetail>div:nth-last-of-type(1)>button {
+    border-radius: 0.25rem;
+    width: 100%;
+}
+
+.ProductDetail>div>div:nth-last-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ProductDetail>div:nth-child(2)>div:nth-last-child(1) button {
+    width: 100%;
+}
+
+.ProductDetail .sizeButtonContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ProductDetail li{
+    font-weight: 500;
+    font-family: Inter;
+}
+
+
+/* Rating Review */
+.RatingAndReview {
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--delft-blue);
+    color: var(--sunset);
+}
+
+.RatingAndReview>h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--sunset);
+    font-family: 'Inter';
+    border-bottom: 2px dashed;
+}
+
+.RatingAndReview>div {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.allReviews {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.allReviews>div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1rem;
+    background: var(--eggshell);
+    color: var(--delft-blue);
+    border-radius: 1rem;
+    gap: 1rem;
+}
+
+.allReviews>div>img {
+    border-radius: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: 4rem;
+    object-fit: cover;
+}
+
+
+/* Styling for the details table */
+.detailsContainer {
+    background: var(--cambridge-blue);
+    padding: 2rem;
+}
+
+.detailsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.detailsTable tr>td:nth-child(1) {
+    width: 10%;
+}
+
+.detailsTable tr>th {
+    text-align: center;
+}
+
+.detailsTable thead {
+    background-color: var(--delft-blue);
+    color: #fff;
+}
+
+.detailsTable th,
+.detailsTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 2px solid var(--delft-blue);
+}
+
+.detailsTable th {
+    font-weight: bold;
+}
+
+.detailsTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+@media (max-width: 768px) {
+    .ProductDetail {
+        flex-direction: column;
+    }
+
+    .RatingAndReview {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .ProductDetail {
+        padding: 1rem;
+    }
+
+    .ProductDetail>div:nth-child(2) {
+        padding: 1rem;
+    }
+}

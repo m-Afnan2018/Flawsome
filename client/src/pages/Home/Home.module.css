@@ -1,0 +1,9 @@
+.Home {
+    display: flex;
+    flex-direction: column;
+}
+
+.Home img {
+    object-fit: cover;
+    width: 100%;
+}
