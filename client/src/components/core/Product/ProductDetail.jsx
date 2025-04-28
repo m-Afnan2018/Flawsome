@@ -115,6 +115,10 @@ const ProductDetail = ({ product }) => {
     }
 
     const addToWishlist = async () => {
+        if (!selectedSize) {
+            toast.error('Select the size');
+            return;
+        }
         const obj = {
             productId: product._id,
             name: `${product.name}- ${selectedSize.size}`,
@@ -123,8 +127,11 @@ const ProductDetail = ({ product }) => {
             price: selectedSize.price,
 
         }
-
-        dispatch(setWishlist([...wishlist, obj]));
+        if(wishlist){
+            dispatch(setWishlist([...wishlist, obj]));
+        }else{
+            dispatch(setWishlist([obj]));
+        }
     }
     const removeFromWishlist = async () => {
         const updatedWishlist = wishlist.filter(
