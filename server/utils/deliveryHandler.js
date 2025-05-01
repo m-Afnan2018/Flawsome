@@ -67,12 +67,9 @@ exports.createOrder = async (order, email, token) => {
         const method = 'post';
         const url = 'https://apiv2.shiprocket.in/v1/external/orders/create/adhoc';
 
-        console.log(data)
-
         const response = await apiConnector(method, url, data, token);
         return response;
     } catch (err) {
-        console.log("Error in delivery: ", err.message)
         return null;
     }
 };
@@ -140,7 +137,6 @@ exports.returnOrder = async (order, email, token) => {
 
         return response;
     } catch (err) {
-        console.log('Delivery Handler: ', err);
         return null;
     }
 }
@@ -162,7 +158,6 @@ exports.printManifest = async (orderId, token) => {
 
         return true;
     } catch (err) {
-        console.log(err.response.data);
         return false;
     }
 }
@@ -184,7 +179,6 @@ exports.generateLable = async (shipmentId, token) => {
 
         return true;
     } catch (err) {
-        console.log(err.response.data);
         return false;
     }
 }
@@ -206,7 +200,6 @@ exports.generateInvoice = async (orderId, token) => {
 
         return true;
     } catch (err) {
-        console.log(err.response.data);
         return false;
     }
 }

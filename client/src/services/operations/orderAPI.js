@@ -206,8 +206,6 @@ export function payOnline(data, navigate, dispatch, user) {
 
             const info = response.data.payment;
 
-            console.log(response);
-
             const options = {
                 key: process.env.REACT_APP_RAZORPAY_KEY,
                 amount: info.amount,

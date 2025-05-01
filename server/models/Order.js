@@ -196,7 +196,6 @@ orderSchema.post('save', async function (doc, next) {
         mailSender(process.env.SMTP_EMAIL, 'Flawsome - Order Status', orderStatusMail(this._id, this.orderType, this.orderDetails.status, this.user.fullname, 'View more information about your order in the below link.\nThank you for choosing us.'));
         next();
     } catch (err) {
-        console.log(err);
         next();
     }
 });

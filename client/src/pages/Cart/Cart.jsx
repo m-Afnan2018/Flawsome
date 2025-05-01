@@ -12,8 +12,6 @@ const Cart = () => {
 
     const { cart } = useSelector(state => state.products);
 
-    console.log(cart)
-
     useEffect(() => {
         let total = 0;
         if (cart) {

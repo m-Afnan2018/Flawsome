@@ -35,8 +35,6 @@ const AddCategory = () => {
 
     const submitHandler = async (formData) => {
         // Handle form submission
-        console.log(formData);
-
         if (!formData.image) {
             setError('image')
         }

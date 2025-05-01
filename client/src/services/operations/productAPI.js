@@ -74,8 +74,6 @@ export const createVarient = async (data) => {
     try {
         const response = await apiConnector('POST', VARIENT, data, { 'Content-Type': 'multipart/form-data' });
 
-        console.log(response);
-
         if (response.data.success) {
             toast.dismiss(toastId)
             toast.success(response.data.message);
@@ -90,8 +88,6 @@ export const updateVarient = async (data) => {
     try {
         const response = await apiConnector('PUT', VARIENT, data, { 'Content-Type': 'multipart/form-data' });
 
-        console.log(response);
-
         if (response.data.success) {
             toast.dismiss(toastId)
             toast.success(response.data.message);
@@ -105,8 +101,6 @@ export const deleteVarient = async (data) => {
     const toastId = toast.loading('Deleting Varient');
     try {
         const response = await apiConnector('DELETE', VARIENT, data);
-
-        console.log(response);
 
         if (response.data.success) {
             toast.dismiss(toastId)
@@ -123,7 +117,6 @@ export const getCategory = async (dispatch) => {
 
         if (response.data.success) {
             dispatch(setCategories(response.data.categories))
-            console.log(response.data.categories);
         }
     } catch (err) {
         dispatch(setCategories(null))

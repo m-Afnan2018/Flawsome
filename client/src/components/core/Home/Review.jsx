@@ -19,7 +19,6 @@ const Review = () => {
         if (reviews) {
             setLoader(false);
         }
-        console.log(reviews)
     }, [reviews]);
 
     function formatDate(isoDate) {

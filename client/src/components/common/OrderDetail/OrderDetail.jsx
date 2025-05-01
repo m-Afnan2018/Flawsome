@@ -60,7 +60,6 @@ const OrderDetail = ({ product, setProduct }) => {
 
     useEffect(() => {
         if (order) {
-            console.log(order);
             setLoader(false);
             setImages(getAllImages(order));
             setDaysDiff(getTime(order.updateDate));

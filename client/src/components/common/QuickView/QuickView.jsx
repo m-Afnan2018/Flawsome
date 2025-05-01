@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 const QuickView = ({ data }) => {
 
-    console.log(data);
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

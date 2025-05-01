@@ -3,7 +3,7 @@ import style from './ProductCard.module.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { setQuickView } from 'slices/productSlice';
 import { useDispatch } from 'react-redux';
-import { FaOpencart, FaRegHeart } from "react-icons/fa";
+import { FaOpencart } from "react-icons/fa";
 
 const ProductCard = ({ data }) => {
 

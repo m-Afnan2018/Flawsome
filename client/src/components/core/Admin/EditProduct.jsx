@@ -113,7 +113,6 @@ const EditProductForm = ({ setData, data }) => {
             await updateProduct(formData);
             navigate('/admin/manage-products');
         } else {
-            console.log('reached here')
             await createProduct(formData);
             navigate('/admin/manage-products');
         }
@@ -287,7 +286,7 @@ const EditProductForm = ({ setData, data }) => {
                 <div>
                     <label htmlFor="cashOnDelivery">Cash on Delivery</label>
                     <label class="toggle-switch">
-                        <input type="checkbox" onClick={() => console.log(getValues('cashOnDelivery'))} {...register('cashOnDelivery')} />
+                        <input type="checkbox" {...register('cashOnDelivery')} />
                         <div class="toggle-switch-background">
                             <div class="toggle-switch-handle"></div>
                         </div>
