@@ -11,15 +11,17 @@ import slideImages from 'assets/data/heroData';
 
 const HeroSlider = () => {
 
-    
+
     return (
         <div className={style.HeroSlider}>
-            <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={true} interval={3000} transitionTime={500}>
+            <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} swipeable={false} showIndicators={false} autoPlay={false} interval={3000} transitionTime={500}>
                 {slideImages.map((image, index) => (
                     <div key={index} className={style.Slide}>
                         <img src={image.url} alt={image.alt} className={style.SlideImage} />
-                        <h2>{image.heading}</h2>
-                        <h3>{image.detail}</h3>
+                        <div>
+                            <h2>{image.heading}</h2>
+                            <h3>{image.detail}</h3>
+                        </div>
                     </div>
                 ))}
             </Carousel>

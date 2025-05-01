@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 const ProductSlider = ({products, heading, click}) => {
     const navigate = useNavigate();
-    console.log(products);
     return (
         <div className={style.ProductSlider}>
             <p>{heading}</p>

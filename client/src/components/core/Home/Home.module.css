@@ -31,26 +31,37 @@
 
 .HeroSlider .Slide h2 {
     font-family: 'Inter';
-    position: absolute;
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    bottom: 15%;
-    left: 5%;
-    color: var(--delft-blue);
+    bottom: 10%;
+    left: 3%;
+    color: var(--sunset);
+    z-index: 1;
     text-shadow: 0px 0px 10px #0000007a;
+    text-align: left;
 }
 
 .HeroSlider .Slide h3 {
-    font-size: 1.25rem;
-    line-height: 85%;
-    position: absolute;
+    font-size: 1rem;
     font-family: 'Inter';
-    bottom: 6%;
-    right: 5%;
-    font-weight: 800;
-    text-align: right;
-    color: var(--delft-blue);
+    bottom: 3%;
+    right: 3%;
+    font-weight: 400;
+    color: var(--sunset);
+    z-index: 1;
     text-shadow: 0px 0px 10px #0000007a;
+    text-align: left;
+}
+
+.HeroSlider .Slide>div {
+    position: absolute;
+    width: 100%;
+    background: black;
+    opacity: 0.5;
+    display: flex;
+    bottom: 0;
+    flex-direction: column;
+    padding: 1rem;
 }
 
 /* Slideshow */
@@ -173,6 +184,7 @@
 
 .singleSlide {
     padding: 1rem;
+    min-width: 200px !important;
 }
 
 /* Review */

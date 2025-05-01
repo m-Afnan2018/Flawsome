@@ -17,29 +17,27 @@ const QuickView = ({ data }) => {
 
     useOnClickOutside(quickViewRef, () => dispatch(setQuickView(null)));
 
-
     return (
         <div className={style.QuickView} ref={quickViewRef}>
-            <button className='primary-btn' onClick={() => dispatch(setQuickView(null))}><MdClose /></button>
-            <div>
-                <img src={data.images[0]} alt='product' />
+            <button className={`${style.closeButton} primary-btn`} onClick={() => dispatch(setQuickView(null))}><MdClose /></button>
+            <div className={style.imageContainer}>
+                <img src={data.images[0]} alt='product' className={style.productImage} />
             </div>
-            <div style={{ padding: '1rem' }}>
-                <h1>{data.name}</h1>
-                <h3>{data.description}</h3>
-                <h2>Details:</h2>
-                <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '1rem' }}>
+            <div className={style.content}>
+                <h1 className={style.productName}>{data.name}</h1>
+                <h3 className={style.productDescription}>{data.description}</h3>
+                <h2 className={style.detailsHeading}>Details:</h2>
+                <table className={style.detailsTable}>
                     <tbody>
                         {data.details.map((detail, index) => (
-                            <tr key={index}>
-                                <td style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>{detail.heading}</td>
-                                <td style={{ padding: '0.5rem', borderBottom: '1px solid #eee' }}>{detail.detail}</td>
+                            <tr key={index} className={style.detailRow}>
+                                <td className={style.detailHeading}>{detail.heading}</td>
+                                <td className={style.detailValue}>{detail.detail}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                
-                <button className='border-round-btn' onClick={() => {dispatch(setQuickView(null)); navigate(`/product/${data._id}`)}}>View More</button>
+                <button className={`${style.viewMoreButton} border-round-btn`} onClick={() => {dispatch(setQuickView(null)); navigate(`/product/${data._id}`)}}>View More</button>
             </div>
         </div >
     )

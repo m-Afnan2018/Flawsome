@@ -34,6 +34,22 @@ const countItems = (cart, productId, sizeId) => {
     return 0;
 }
 
+const CollapsibleSection = ({ title, children }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div className={style.collapsibleSection}>
+            <div className={style.sectionHeader} onClick={() => setIsOpen(!isOpen)}>
+                <h3>{title}</h3>
+                <span>{isOpen ? '-' : '+'}</span>
+            </div>
+            <div className={`${style.sectionContent} ${isOpen ? style.open : ''}`}>
+                {isOpen && children}
+            </div>
+        </div>
+    );
+};
+
 const ProductDetail = ({ product }) => {
     const { user } = useSelector(state => state.user);
     const { cart, wishlist } = useSelector(state => state.products);
@@ -127,9 +143,9 @@ const ProductDetail = ({ product }) => {
             price: selectedSize.price,
 
         }
-        if(wishlist){
+        if (wishlist) {
             dispatch(setWishlist([...wishlist, obj]));
-        }else{
+        } else {
             dispatch(setWishlist([obj]));
         }
     }
@@ -169,7 +185,7 @@ const ProductDetail = ({ product }) => {
             </div>
             <div>
                 <h2>{product.name}</h2>
-                <h3>{product.category.name}</h3>
+                <h3>{product?.category?.name || 'Fashion'}</h3>
 
                 <h3>Select Size</h3>
                 <div className={style.sizeButtonContainer}>{
@@ -182,22 +198,36 @@ const ProductDetail = ({ product }) => {
                 }</div>
                 <h4 style={{ color: 'red', fontWeight: '700', height: '1rem' }}>{selectedSize && selectedSize.stock === 0 ? 'This Item is out of Stock' : ''}</h4>
                 <h4 style={{ color: 'red', fontWeight: '700', height: '1rem' }}>{selectedSize && selectedSize.stock > 0 && selectedSize.stock <= 10 ? `Hurry Up, Only ${selectedSize.stock} left !!!` : ''}</h4>
-                {/* {selectedSize && selectedSize.stock === 0 && <h4 style={{ color: 'red', fontWeight: '700' }}>This Item is out of Stock</h4>} */}
-                {/* {selectedSize && selectedSize.stock > 0 && selectedSize.stock <= 10 && <h4 style={{ color: 'red', fontWeight: '700' }}>Hurry Up, Only {selectedSize.stock} left !!!</h4>} */}
 
-                <h3>Description</h3>
-                <h4>{product.description}</h4>
-                <h3>Offers</h3>
-                <ul>
-                    <li>3 Days Replacement Guarantee</li>
-                    <li>Free Delivery on orders above ₹499</li>
-                    <li>Upto {maxDiscount}% discount</li>
-                    {product.cashOnDelivery && <li>Cash On Delivery Availble</li>}
-                </ul>
+                <CollapsibleSection title="Description">
+                    <h4>{product.description}</h4>
+                </CollapsibleSection>
+
+                <CollapsibleSection title="Offers">
+                    <ul>
+                        <li>3 Days Replacement Guarantee</li>
+                        <li>Free Delivery on orders above ₹499</li>
+                        <li>Upto {maxDiscount}% discount</li>
+                        {product.cashOnDelivery && <li>Cash On Delivery Available</li>}
+                    </ul>
+                </CollapsibleSection>
+
+                <CollapsibleSection title="Information">
+                    <table className={style.detailsTable}>
+                        <tbody>
+                            {product.details.map((detail, index) => (
+                                <tr key={index} className={style.detailRow}>
+                                    <td className={style.detailHeading}>{detail.heading}</td>
+                                    <td className={style.detailValue}>{detail.detail}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </CollapsibleSection>
 
                 {selectedSize && <div className={style.priceTag}>
-                    <h2>₹ {selectedSize.originalPrice}</h2>
-                    <h3>₹ {selectedSize.discountedPrice}</h3>
+                    <h2><span>Buy now at </span>₹ {selectedSize.discountedPrice}</h2>
+                    <h3>₹ {selectedSize.originalPrice}</h3>
                 </div>}
                 {checkWishlist ? <button className='border-round-btn' onClick={removeFromWishlist}>Remove from wishlist</button> : <button className='border-round-btn' onClick={addToWishlist}>Add to wishlist</button>}
                 <div>

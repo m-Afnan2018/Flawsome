@@ -1,128 +1,196 @@
+/* Enhanced styling for QuickView dialog box */
 .QuickView {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80dvw;
-    background: var(--sunset);
+    width: 90%;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
     border-radius: 1rem;
-    box-shadow: 0px 0px 9px 1px var(--delft-blue);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
     z-index: 15;
     display: flex;
+    flex-direction: row;
     overflow: hidden;
-    border: 2px solid var(--sunset);
-    overflow: auto;
-    max-height: 90dvh;
+    border: 1px solid #ddd;
+    max-height: 85vh;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .QuickView>button {
     position: absolute;
-    right: 0;
-    aspect-ratio: 1;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
-.QuickView>div {
-    width: 100%;
-    color: var(--delft-blue);
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    overflow: auto;
+.QuickView>button:hover {
+    transform: scale(1.2);
 }
 
-.QuickView img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: var(--delft-blue);
-}
-
-.QuickView h1 {
-    font-family: 'Lora';
-    text-transform: uppercase;
-    font-weight: 500;
-}
-
-.QuickView h2 {
-    font-weight: 600;
-    margin-top: 1rem;
-    font-family: 'Lora';
-}
-
-.QuickView h3 {
-    font-weight: 400;
-}
-
-.QuickView ul {
-    margin-left: 2rem;
-    font-weight: 400;
-}
-
-.color {
-    padding: 1rem;
-    border-radius: 100%;
-    width: 1rem;
-}
-
-.QuickView>div>div {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.size {
-    background: var(--eggshell);
-    border-radius: 100%;
-    aspect-ratio: 1;
-    width: 2.5rem;
-    height: 2.5rem;
+.imageContainer {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0.1rem solid var(--delft-blue);
-    color: var(--delft-blue);
-    font-size: 1.25rem;
-    font-weight: 400;
+    background: #f9f9f9;
+    padding: 1rem;
 }
 
-.QuickView>div button {
+.productImage {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: #333;
+    overflow: auto;
+}
+
+.productName {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 0.5rem;
+}
+
+.productDescription {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.detailsHeading {
+    font-size: 1.2rem;
+    font-weight: 600;
     margin-top: 1rem;
+    color: #444;
 }
 
-.QuickView button {
-    padding: 0 0.5rem;
-}
-
-@media (max-width: 768px) {
-    .QuickView {
-        flex-direction: column;
-        width: 90dvw;
-    }
-
-    .QuickView>div {
-        overflow: visible;
-    }
-
-    .QuickView::-webkit-scrollbar {
-        height: 0px;
-        width: 0px;
-    }
-}
-
-/* Added styles for the responsive table in QuickView */
-.table {
+.detailsTable {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 1rem;
 }
 
-.table th {
-    width: 30%;
+.detailsTable th, .detailsTable td {
+    padding: 0.8rem;
     text-align: left;
-    border-bottom: 2px solid #ccc;
-    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
 }
 
-.table td {
-    padding: 0.5rem;
-    border-bottom: 1px solid #eee;
+.detailsTable th {
+    background: #f7f7f7;
+    font-weight: bold;
+}
+
+.viewMoreButton {
+    align-self: flex-start;
+    padding: 0.8rem 1.5rem;
+    background: var(--delft-blue);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.viewMoreButton:hover {
+    background: #0056b3;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .QuickView {
+        width: 95%;
+        flex-direction: column;
+        max-height: 90vh;
+        overflow: auto;
+    }
+
+    .imageContainer {
+        padding: 0.5rem;
+    }
+
+    .content {
+        padding: 1rem;
+        gap: 0.5rem;
+        overflow: unset;
+    }
+
+    .productName {
+        font-size: 1.5rem;
+    }
+
+    .productDescription {
+        font-size: 0.9rem;
+    }
+
+    .detailsHeading {
+        font-size: 1rem;
+    }
+
+    .viewMoreButton {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .QuickView {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .productImage {
+        max-width: 100%;
+        max-height: 40%;
+    }
+
+    .content {
+        padding: 0.5rem;
+    }
+
+    .productName {
+        font-size: 1.2rem;
+    }
+
+    .productDescription {
+        font-size: 0.8rem;
+    }
+
+    .detailsHeading {
+        font-size: 0.9rem;
+    }
+
+    .viewMoreButton {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+    }
 }

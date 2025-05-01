@@ -6,7 +6,6 @@ import '../../../node_modules/react-image-gallery/styles/css/image-gallery.css'
 import RatingAndReview from 'components/core/Product/RatingAndReview';
 import ProductDetail from 'components/core/Product/ProductDetail';
 import ProductSlider from 'components/common/ProductSlider/ProductSlider';
-import AllDetails from 'components/core/Product/AllDetails';
 
 const Product = () => {
     const { id } = useParams();
@@ -42,7 +41,6 @@ const Product = () => {
     return (
         <div className={style.Product}>
             <ProductDetail product={product} />
-            <AllDetails details={product.details} />
             {product.suggestions && product.suggestions.length > 0 && <ProductSlider products={product.suggestions} heading={'Suggestions'} click={'/search?sortOrder=desc&sortBy=viewed'}/>}
             <RatingAndReview />
             <ProductSlider products={bestProduct} heading={'Best Selling products'} click={'/search?sortOrder=desc&sortBy=purchased'} />

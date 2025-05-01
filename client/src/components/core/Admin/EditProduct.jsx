@@ -50,12 +50,13 @@ const EditProductForm = ({ setData, data }) => {
             setValue('name', data.name);
             setValue('description', data.description);
             setDetails(data.details);
-            setValue('category', data.category._id);
+            if (data.category) {
+                setValue('category', data.category?._id);
+            }
             setImages(data.images);
             setPreviewImages(data.images);
             setOptions(data.buyingOption);
             setValue('cashOnDelivery', data.isCOD || false);
-            console.log(data)
         } else {
             setValue('name', '');
             setValue('description', '');
@@ -155,7 +156,7 @@ const EditProductForm = ({ setData, data }) => {
         setValue('originalPrice', option.originalPrice);
         setValue('discountedPrice', option.discountedPrice);
         setValue('stocks', option.stock);
-        setAddingOption(index+1);
+        setAddingOption(index + 1);
     }
 
     const removeOption = (index) => {
@@ -191,7 +192,7 @@ const EditProductForm = ({ setData, data }) => {
         } else {
             setOptions(prev => {
                 const newOptions = [...prev];
-                newOptions[addingOption-1] = addedOption;
+                newOptions[addingOption - 1] = addedOption;
                 return newOptions;
             })
         }
@@ -299,8 +300,10 @@ const EditProductForm = ({ setData, data }) => {
                     {details.length > 0 &&
                         details.map((detail, index) => (
                             <div key={index}>
-                                <p>{detail.heading}</p>
-                                <p>{detail.detail}</p>
+                                <div>
+                                    <p>{detail.heading}</p>
+                                    <p>{detail.detail}</p>
+                                </div>
                                 <div className={style.groupButtons}>
                                     <button className='border-round-btn' type='button' onClick={() => moveDetailUp(index)}><MdArrowUpward /></button>
                                     <button className='border-round-btn' type='button' onClick={() => moveDetailDown(index)}><MdArrowDownward /></button>

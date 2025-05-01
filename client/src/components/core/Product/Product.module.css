@@ -123,6 +123,14 @@
     font-weight: 700;
     line-height: 24px;
 }
+.ProductDetail .priceTag>h2>span {
+    color: hsl(0deg 80.84% 32.75%);
+    font-family: 'Inter';
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+
 
 .ProductDetail .priceTag>h3 {
     all: unset;
@@ -242,42 +250,61 @@
 
 
 /* Styling for the details table */
-.detailsContainer {
-    background: var(--cambridge-blue);
-    padding: 2rem;
-}
-
 .detailsTable {
     width: 100%;
     border-collapse: collapse;
 }
 
-.detailsTable tr>td:nth-child(1) {
-    width: 10%;
-}
-
-.detailsTable tr>th {
-    text-align: center;
-}
-
-.detailsTable thead {
-    background-color: var(--delft-blue);
-    color: #fff;
-}
-
-.detailsTable th,
-.detailsTable td {
-    padding: 12px 15px;
+.detailsTable th, .detailsTable td {
+    padding: 0.8rem;
     text-align: left;
-    border: 2px solid var(--delft-blue);
+    font-family: 'Nunito';
+    border-bottom: 1px solid var(--delft-blue);
+}
+
+.detailsTable th, .detailsTable td:nth-child(1){
+    font-weight: 800;
+    width: 50%;
 }
 
 .detailsTable th {
+    background: #f7f7f7;
     font-weight: bold;
 }
 
-.detailsTable tr:nth-child(even) {
-    background-color: #f2f2f2;
+
+/* Collapsible Section Styling */
+.collapsibleSection {
+    border: 1px solid var(--delft-blue);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--delft-blue);
+    color: var(--eggshell);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.sectionContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    background-color: var(--eggshell);
+    color: var(--delft-blue);
+}
+
+.sectionContent.open {
+    padding: 1rem;
+    max-height: fit-content; /* Adjust as needed */
 }
 
 

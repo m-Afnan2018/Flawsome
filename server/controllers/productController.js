@@ -209,11 +209,25 @@ exports.getAllProduct = async (req, res) => {
             { $match: query },
             { $unwind: '$buyingOption' },
             {
+                $lookup: {
+                    from: 'categories',
+                    localField: 'category',
+                    foreignField: '_id',
+                    as: 'categoryDetails'
+                }
+            },
+            {
+                $unwind: {
+                    path: '$categoryDetails',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
                 $group: {
                     _id: '$_id',
                     name: { $first: '$name' },
                     description: { $first: '$description' },
-                    category: { $first: '$category' },
+                    category: { $first: '$categoryDetails.name' },
                     isCOD: { $first: '$isCOD' },
                     viewed: { $first: '$viewed' },
                     purchased: { $first: '$purchased' },

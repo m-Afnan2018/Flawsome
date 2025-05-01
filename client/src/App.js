@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/common/NavBar/NavBar';
 import Home from './pages/Home/Home';
@@ -42,6 +42,14 @@ import Wishlist from 'pages/Wishlist/Wishlist';
 import QuickView from 'components/common/QuickView/QuickView';
 
 function App() {
+    const { pathname } = useLocation();
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+      }, [pathname]);
+
 
     const { user, isLogin } = useSelector(state => state.user);
     const { cart, wishlist, quickView } = useSelector(state => state.products);

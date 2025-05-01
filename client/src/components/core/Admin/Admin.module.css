@@ -11,14 +11,15 @@
 }
 
 .Sidebar a {
-    width: 100%;
-    padding: 1rem;
     background-color: var(--eggshell);
+    border: .125rem solid var(--delft-blue);
+    border-radius: .5rem;
     color: var(--delft-blue);
     font-size: 1rem;
-    border: 0.125rem solid var(--delft-blue);
-    border-radius: 0.5rem;
-    font-weight: 700;
+    font-weight: 600;
+    padding: 1rem;
+    width: 100%;
+    font-family: 'Inter';
 }
 
 @media (max-width: 768px) {
@@ -182,11 +183,11 @@ select {
     color: var(--delft-blue);
 }
 
-.details>div>p:nth-child(1) {
+.details>div>div>p:nth-child(1) {
     width: 20%;
 }
 
-.details>div>p:nth-child(2) {
+.details>div>div>p:nth-child(2) {
     width: 60%;
     border-radius: 0;
 }
@@ -202,8 +203,8 @@ select {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    border-radius: 14.5rem;
+    flex-direction: row !important;
+    border-radius: 6rem;
     overflow: hidden;
 }
 
@@ -212,7 +213,11 @@ select {
     justify-content: center;
     align-items: center;
     color: var(--cambridge-blue);
-    height: 2.5rem;
+}
+
+.details>div>div:nth-child(1){
+    width: 80%;
+    gap: 0;
 }
 
 .details p {
@@ -222,13 +227,16 @@ select {
     height: 100%;
     flex-grow: 1;
     padding: 0.5rem 1rem;
-    border-radius: 6.5rem 0 0 6.5rem;
     font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .details .groupButtons {
     gap: 0;
     width: 20%;
+    border-radius: 0;
     height: 100%;
 }
 
@@ -325,6 +333,47 @@ select {
     .Product form label {
         width: 100%;
     }
+
+    .Product .productForm input,
+    textarea,
+    select {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .details input:nth-child(1) {
+        width: 20%;
+    }
+    
+    .details input:nth-child(2) {
+        width: calc(80%);
+    }
+
+    .details button {
+        width: 80%;
+    }
+
+    .details>div{
+        border-radius: 0;
+    }
+
+    .details>div>div{
+        border-radius: 6.5rem;
+        overflow: hidden;
+        gap: 0;
+    }
+
+    .details>div>div:nth-child(1) {
+        border-radius: 1rem 1rem 0 0;
+        width: 100%;
+    }
+    .details>div>div:nth-child(2) {
+        border-radius: 0 0 1rem 1rem;
+    }
+
+    .details .groupButtons {
+        width: 100%;
+    }
 }
 
 /* Manage Product */
@@ -376,7 +425,7 @@ select {
 .ManageProduct>div>div {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .allProduct {
@@ -446,7 +495,7 @@ select {
 
 .singleProduct {
     display: flex;
-    min-width: 350px;
+    min-width: auto;
     width: 100%;
     border-radius: 1rem;
     background: var(--cambridge-blue);
