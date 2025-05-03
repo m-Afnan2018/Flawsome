@@ -637,7 +637,7 @@ const verifyMail = (fullname, token) => {
                                       "
                                     >
                                       <p style="line-height: 180%">
-                                        Activate your URI & MacKenzei account today to
+                                        Activate your Flawsome account today to
                                         unlock:
                                       </p>
                                       <ol>

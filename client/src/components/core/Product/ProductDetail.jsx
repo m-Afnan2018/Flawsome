@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { setCart, setWishlist } from 'slices/productSlice'
+import { FaHeart, FaRegHeart, FaShareAlt } from "react-icons/fa";
 
 const convertToGalleryImages = (images) => {
     if (images) {
@@ -59,6 +60,8 @@ const ProductDetail = ({ product }) => {
 
     const [size, setSize] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
+
+    const shareUrl = window.location.href;
 
     const [checkCart, setCheckCart] = useState(0)
     const [checkWishlist, setCheckWishlist] = useState(0)
@@ -156,6 +159,30 @@ const ProductDetail = ({ product }) => {
         dispatch(setWishlist(updatedWishlist));
     }
 
+    const handleShare = async () => {
+        const shareData = {
+          title: document.title,
+          url: shareUrl,
+        };
+    
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+          } catch (err) {
+            console.error('Share failed:', err);
+          }
+        } else if (navigator.clipboard) {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            toast.success('Copied !!!')
+          } catch (err) {
+            console.error('Copy failed:', err);
+          }
+        } else {
+          window.prompt('Copy this link:', shareUrl);
+        }
+      };
+
     useEffect(() => {
         if (product) {
             const maxDiscount = product.buyingOption.reduce((max, item) => {
@@ -196,8 +223,13 @@ const ProductDetail = ({ product }) => {
                         }}>{item.size}</button>
                     ))
                 }</div>
-                <h4 style={{ color: 'red', fontWeight: '700', height: '1rem' }}>{selectedSize && selectedSize.stock === 0 ? 'This Item is out of Stock' : ''}</h4>
-                <h4 style={{ color: 'red', fontWeight: '700', height: '1rem' }}>{selectedSize && selectedSize.stock > 0 && selectedSize.stock <= 10 ? `Hurry Up, Only ${selectedSize.stock} left !!!` : ''}</h4>
+
+                <div className={style.iconContainer}>
+                    {checkWishlist ? <FaHeart style={{ color: '#971010' }} onClick={removeFromWishlist} /> : <FaRegHeart style={{ color: '#971010' }} onClick={addToWishlist} />}
+                    <FaShareAlt onClick={handleShare} />
+                </div>
+                <h4 style={{ color: '#971010', fontWeight: '700', height: '1rem' }}>{selectedSize && selectedSize.stock === 0 ? 'This Item is out of Stock' : ''}</h4>
+                <h4 style={{ color: '#971010', fontWeight: '700', height: '1rem' }}>{selectedSize && selectedSize.stock > 0 && selectedSize.stock <= 10 ? `Hurry Up, Only ${selectedSize.stock} left !!!` : ''}</h4>
 
                 <CollapsibleSection title="Description">
                     <h4>{product.description}</h4>
@@ -229,7 +261,6 @@ const ProductDetail = ({ product }) => {
                     <h2><span>Buy now at </span>₹ {selectedSize.discountedPrice}</h2>
                     <h3>₹ {selectedSize.originalPrice}</h3>
                 </div>}
-                {checkWishlist ? <button className='border-round-btn' onClick={removeFromWishlist}>Remove from wishlist</button> : <button className='border-round-btn' onClick={addToWishlist}>Add to wishlist</button>}
                 <div>
                     <button className='primary-round-btn' style={{ backgroundColor: 'hsl(0deg 81.13% 32.69%)' }} onClick={() => handleCart('buy')}>{checkCart !== 0 ? `View Cart` : 'Buy Now'}</button>
                     <button className='border-round-btn' onClick={() => handleCart()}>{checkCart !== 0 ? `Remove From Cart` : 'Add to Cart'}</button>

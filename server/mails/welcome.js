@@ -278,7 +278,7 @@ const welcomeMail = () => {
                                           <img
                                             align="center"
                                             border="0"
-                                            src="https://res.cloudinary.com/dvoqdozjn/image/upload/v1715336601/Mail%20Images/WelcomeMail/image-5.png"
+                                            src="https://res.cloudinary.com/dk6fshd8h/image/upload/v1746248445/Flawsome/Mails/longLogoSVG.svg"
                                             alt="Image"
                                             title="Image"
                                             style="
@@ -326,7 +326,7 @@ const welcomeMail = () => {
                   class="u-row-container"
                   style="
                     padding: 0px;
-                    background-image: url('https://res.cloudinary.com/dvoqdozjn/image/upload/v1715336601/Mail%20Images/WelcomeMail/image-8.png');
+                    background-image: url('https://res.cloudinary.com/dk6fshd8h/image/upload/v1746249202/Flawsome/Mails/background.png');
                     background-repeat: no-repeat;
                     background-position: center top;
                     background-color: transparent;
@@ -353,7 +353,7 @@ const welcomeMail = () => {
                         background-color: transparent;
                       "
                     >
-                      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-image: url('https://res.cloudinary.com/dvoqdozjn/image/upload/v1715336601/Mail%20Images/WelcomeMail/image-8.png');background-repeat: no-repeat;background-position: center top;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: transparent;"><![endif]-->
+                      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-image: url('https://res.cloudinary.com/dk6fshd8h/image/upload/v1746249202/Flawsome/Mails/background.png');background-repeat: no-repeat;background-position: center top;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-color: transparent;"><![endif]-->
     
                       <!--[if (mso)|(IE)]><td align="center" width="240" style="width: 240px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
                       <div

@@ -165,7 +165,7 @@ const resetMail = (fullname, token) => {
       <tr>
         <td style="padding-right: 0px;padding-left: 0px;" align="center">
           
-          <img align="center" border="0" src="https://res.cloudinary.com/dvoqdozjn/image/upload/v1715337566/Mail%20Images/ResetPasswordMail/image-2.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 29%;max-width: 168.2px;" width="168.2"/>
+          <img align="center" border="0" src="https://res.cloudinary.com/dk6fshd8h/image/upload/v1746248445/Flawsome/Mails/longLogoSVG.svg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 29%;max-width: 168.2px;" width="168.2"/>
           
         </td>
       </tr>
@@ -208,7 +208,7 @@ const resetMail = (fullname, token) => {
       <tr>
         <td style="padding-right: 0px;padding-left: 0px;" align="center">
           
-          <img align="center" border="0" src="https://res.cloudinary.com/dvoqdozjn/image/upload/v1715337566/Mail%20Images/ResetPasswordMail/image-1.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 10%;max-width: 58px;" width="58"/>
+          <img align="center" border="0" src="https://res.cloudinary.com/dk6fshd8h/image/upload/v1746249005/Flawsome/Mails/ResetPasswordIcon.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 10%;max-width: 58px;" width="58"/>
           
         </td>
       </tr>
@@ -264,7 +264,7 @@ const resetMail = (fullname, token) => {
       <div style="font-size: 14px; line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">Hello ${fullname},</span></p>
     <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">We have sent you this email in response to your request to reset your password on URI & Mackenzie.</span></p>
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">We have sent you this email in response to your request to reset your password on Flawsome.</span></p>
     <p style="font-size: 14px; line-height: 140%;"> </p>
     <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; color: #666666;">To reset your password, please follow the link below: </span></p>
       </div>

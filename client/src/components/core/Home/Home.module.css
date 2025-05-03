@@ -118,6 +118,7 @@
     border-radius: 1rem;
     cursor: pointer;
     text-transform: uppercase;
+    font-family: 'Tilt Warp';
 }
 
 .category div:hover p {
@@ -184,7 +185,23 @@
 
 .singleSlide {
     padding: 1rem;
-    min-width: 200px !important;
+    min-width: 300px !important;
+}
+
+/* For tablets */
+@media (max-width: 768px) {
+    .singleSlide {
+        min-width: 250px !important;
+        padding: 0.8rem;
+    }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+    .singleSlide {
+        min-width: 200px !important;
+        padding: 0.5rem;
+    }
 }
 
 /* Review */

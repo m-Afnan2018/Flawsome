@@ -112,6 +112,7 @@
     background: var(--cambridge-blue);
     color: var(--delft-blue);
 }
+
 .ProductDetail .sizeButton.active {
     background: var(--cambridge-blue);
     color: var(--delft-blue);
@@ -123,6 +124,7 @@
     font-weight: 700;
     line-height: 24px;
 }
+
 .ProductDetail .priceTag>h2>span {
     color: hsl(0deg 80.84% 32.75%);
     font-family: 'Inter';
@@ -194,7 +196,19 @@
     gap: 1rem;
 }
 
-.ProductDetail li{
+.ProductDetail .iconContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ProductDetail .iconContainer>svg{
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.ProductDetail li {
     font-weight: 500;
     font-family: Inter;
 }
@@ -255,14 +269,16 @@
     border-collapse: collapse;
 }
 
-.detailsTable th, .detailsTable td {
+.detailsTable th,
+.detailsTable td {
     padding: 0.8rem;
     text-align: left;
     font-family: 'Nunito';
     border-bottom: 1px solid var(--delft-blue);
 }
 
-.detailsTable th, .detailsTable td:nth-child(1){
+.detailsTable th,
+.detailsTable td:nth-child(1) {
     font-weight: 800;
     width: 50%;
 }
@@ -304,7 +320,8 @@
 
 .sectionContent.open {
     padding: 1rem;
-    max-height: fit-content; /* Adjust as needed */
+    max-height: fit-content;
+    /* Adjust as needed */
 }
 
 

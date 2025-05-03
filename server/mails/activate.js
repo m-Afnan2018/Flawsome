@@ -400,7 +400,7 @@ const activateMail = (fullname, token) => {
                                           <img
                                             align="left"
                                             border="0"
-                                            src="https://res.cloudinary.com/dvoqdozjn/image/upload/v1715337356/Mail%20Images/ActivateMail/image-1.png"
+                                            src="https://res.cloudinary.com/dk6fshd8h/image/upload/v1746248445/Flawsome/Mails/longLogoSVG.svg"
                                             alt="Image"
                                             title="Image"
                                             style="
@@ -637,7 +637,7 @@ const activateMail = (fullname, token) => {
                                       "
                                     >
                                       <p style="line-height: 180%">
-                                        Activate your URI & Mackenzie account today to
+                                        Activate your Flawsome account today to
                                         unlock:
                                       </p>
                                       <ol>
@@ -697,7 +697,7 @@ const activateMail = (fullname, token) => {
                                           <img
                                             align="center"
                                             border="0"
-                                            src="https://res.cloudinary.com/dvoqdozjn/image/upload/v1715337356/Mail%20Images/ActivateMail/image-2.png"
+                                            src="https://res.cloudinary.com/dk6fshd8h/image/upload/v1746248778/Flawsome/Mails/complete.png"
                                             alt="Image"
                                             title="Image"
                                             style="

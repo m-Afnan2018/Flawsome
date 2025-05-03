@@ -238,7 +238,7 @@ const orderStatusMail = (id, order, currentStatus, fullname, message) => {
                                           <img
                                             align="center"
                                             border="0"
-                                            src="https://res.cloudinary.com/dvoqdozjn/image/upload/v1715337690/Mail%20Images/OrderMail/image-2.png"
+                                            src="https://res.cloudinary.com/dk6fshd8h/image/upload/v1746248445/Flawsome/Mails/longLogoSVG.svg"
                                             alt="Image"
                                             title="Image"
                                             style="
@@ -359,7 +359,7 @@ const orderStatusMail = (id, order, currentStatus, fullname, message) => {
                                           <img
                                             align="center"
                                             border="0"
-                                            src="https://res.cloudinary.com/dvoqdozjn/image/upload/v1715337690/Mail%20Images/OrderMail/image-1.png"
+                                            src="https://res.cloudinary.com/dk6fshd8h/image/upload/v1746248909/Flawsome/Mails/orderComplete.png"
                                             alt="Image"
                                             title="Image"
                                             style="
