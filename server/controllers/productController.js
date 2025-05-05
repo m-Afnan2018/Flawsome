@@ -11,7 +11,7 @@ const User = require("../models/User");
 exports.createProduct = async (req, res) => {
     try {
         //  Fetching
-        let { name, description, category, cashOnDelivery = 'Off', originalPrice, discountedPrice, stocks } = req.body;
+        let { name, description, category, cashOnDelivery = 'Off', sizeOptions, originalPrice, discountedPrice, stocks } = req.body;
         let images = req.files['images[]'] || [];
         images = convertToArray(images)
         let details = JSON.parse(req.body.details) || [];
@@ -50,6 +50,7 @@ exports.createProduct = async (req, res) => {
             discountedPrice: Number(discountedPrice),
             stock: Number(stocks),
             buyingOption: buyingOption,
+            sizeOptions: sizeOptions
         })
         await productObj.save();
 
@@ -67,7 +68,7 @@ exports.updateProduct = async (req, res) => {
     try {
 
         // Fetching
-        let { id, name, description, category, cashOnDelivery, stocks, originalPrice, discountedPrice, buyingOption } = req.body;
+        let { id, name, description, category, cashOnDelivery, stocks, sizeOptions, originalPrice, discountedPrice, buyingOption } = req.body;
         let images = req.body['images[]'] || [];
         let newImages = req.files ? req.files['images[]'] : [];
         newImages = convertToArray(newImages);
@@ -118,6 +119,7 @@ exports.updateProduct = async (req, res) => {
             discountedPrice: Number(discountedPrice),
             stock: Number(stocks),
             buyingOption: buyingOption,
+            sizeOptions: sizeOptions
         })
 
         // Send response

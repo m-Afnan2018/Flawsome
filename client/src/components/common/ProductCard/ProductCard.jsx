@@ -20,7 +20,7 @@ const ProductCard = ({ data }) => {
     return (
         <div className={`${style.ProductCard} ${location.pathname === '/search' && style.search}`}>
             <div className={style.img} style={{ backgroundImage: `url(${data.images[0]})` }} onClick={() => navigate(`/product/${data._id}`)}>
-                {data.maxDiscount !== 0 && <div className={style.topLeft}>{(data.maxDiscount * 100).toFixed(0)}% OFF</div>}
+                {data.maxDiscount >=1 && <div className={style.topLeft}>{(data.maxDiscount * 100).toFixed(0)}% OFF</div>}
                 <div className={style.topRight} onClick={quickView}>Quick View</div>
                 <div className={style.bottomLeft}>{data.rating} ★</div>
                 <div className={style.bottomRight}><FaOpencart /></div>

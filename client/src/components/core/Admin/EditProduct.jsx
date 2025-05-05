@@ -56,7 +56,14 @@ const EditProductForm = ({ setData, data }) => {
             }
             setImages(data.images);
             setPreviewImages(data.images);
-            setOptions(data.buyingOption);
+            if(data.sizeOption){
+                setOptions(data.buyingOption);
+            }else{
+                setValue('originalSinglePrice', data.buyingOption[0].originalPrice);
+                setValue('discountedSinglePrice', data.buyingOption[0].discountedPrice);
+                setValue('stocksSingle', data.buyingOption[0].stock);
+                setAddSizeOption(false);
+            }
             setValue('cashOnDelivery', data.isCOD || false);
         } else {
             setValue('name', '');
@@ -95,6 +102,7 @@ const EditProductForm = ({ setData, data }) => {
         }
         if (addSizeOption) {
             formData.buyingOptions = JSON.stringify(options);
+            formData.sizeOptions = true;
         } else {
             const addedOption = {
                 size: 'NA',
@@ -102,6 +110,7 @@ const EditProductForm = ({ setData, data }) => {
                 discountedPrice: getValues('discountedSinglePrice'),
                 stock: getValues('stocksSingle')
             }
+            formData.sizeOptions = false;
             formData.buyingOptions = JSON.stringify([addedOption]);
         }
         formData.images = images;
@@ -332,7 +341,7 @@ const EditProductForm = ({ setData, data }) => {
                 <div>
                     <label htmlFor="setOptions">Add size options</label>
                     <label class="toggle-switch">
-                        <input type="checkbox" onChange={(val) => setAddSizeOption(val.target.checked)} />
+                        <input type="checkbox" value={addSizeOption} onChange={(val) => setAddSizeOption(val.target.checked)} />
                         <div class="toggle-switch-background">
                             <div class="toggle-switch-handle"></div>
                         </div>

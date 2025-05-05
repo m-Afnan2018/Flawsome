@@ -12,6 +12,7 @@ const heroData = [
     {
         "id": 1,
         "smallImage": image1,
+		"largeImage": image1,
         "title": "Elegant Sarees for Every Occasion",
         "description": "Explore our collection of traditional and modern sarees.",
         "alt": "Elegant Sarees"
@@ -19,6 +20,7 @@ const heroData = [
     {
         "id": 2,
         "smallImage": image2,
+		"largeImage": image2,
         "title": "Exclusive Wedding Collection",
         "description": "Make your special day unforgettable with our wedding sarees.",
         "alt": "Wedding Collection"
