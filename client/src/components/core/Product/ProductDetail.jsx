@@ -202,6 +202,11 @@ const ProductDetail = ({ product }) => {
                 setCheckWishlist(false)
             }
         }
+
+        if(!product.sizeOptions){
+            setSelectedSize(product.buyingOption[0]);
+            setSize(product.buyingOption[0]._id);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart, wishlist, selectedSize])
 
@@ -214,15 +219,15 @@ const ProductDetail = ({ product }) => {
                 <h2>{product.name}</h2>
                 <h3>{product?.category?.name || 'Fashion'}</h3>
 
-                <h3>Select Size</h3>
-                <div className={style.sizeButtonContainer}>{
+                {product.sizeOptions && <h3>Select Size</h3>}
+                {product.sizeOptions && <div className={style.sizeButtonContainer}>{
                     product.buyingOption.map((item, index) => (
                         <button key={index} className={`${style.sizeButton} ${size === item._id ? style.active : ''}`} onClick={() => {
                             setSize(item._id);
                             setSelectedSize(item);
                         }}>{item.size}</button>
                     ))
-                }</div>
+                }</div>}
 
                 <div className={style.iconContainer}>
                     {checkWishlist ? <FaHeart style={{ color: '#971010' }} onClick={removeFromWishlist} /> : <FaRegHeart style={{ color: '#971010' }} onClick={addToWishlist} />}
@@ -239,7 +244,7 @@ const ProductDetail = ({ product }) => {
                     <ul>
                         <li>3 Days Replacement Guarantee</li>
                         <li>Free Delivery on orders above ₹499</li>
-                        <li>Upto {maxDiscount}% discount</li>
+                        {selectedSize && selectedSize.originalPrice !== selectedSize.discountedPrice && <li>Upto {maxDiscount}% discount</li>}
                         {product.cashOnDelivery && <li>Cash On Delivery Available</li>}
                     </ul>
                 </CollapsibleSection>
@@ -259,11 +264,11 @@ const ProductDetail = ({ product }) => {
 
                 {selectedSize && <div className={style.priceTag}>
                     <h2><span>Buy now at </span>₹ {selectedSize.discountedPrice}</h2>
-                    <h3>₹ {selectedSize.originalPrice}</h3>
+                    {selectedSize.originalPrice !== selectedSize.discountedPrice && <h3>₹ {selectedSize.originalPrice}</h3>}
                 </div>}
                 <div>
-                    <button className='primary-round-btn' style={{ backgroundColor: 'hsl(0deg 81.13% 32.69%)' }} onClick={() => handleCart('buy')}>{checkCart !== 0 ? `View Cart` : 'Buy Now'}</button>
-                    <button className='border-round-btn' onClick={() => handleCart()}>{checkCart !== 0 ? `Remove From Cart` : 'Add to Cart'}</button>
+                    <button className='primary-round-btn' onClick={() => handleCart('buy')}>{checkCart !== 0 ? `View Cart` : 'Buy Now'}</button>
+                    <button className='primary-round-btn' onClick={() => handleCart()}>{checkCart !== 0 ? `Remove From Cart` : 'Add to Cart'}</button>
                 </div>
             </div>
         </div>

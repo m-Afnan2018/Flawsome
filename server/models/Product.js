@@ -49,6 +49,15 @@ const productSchema = new mongoose.Schema({
         default: 0,
         min: [0, 'Purchased count cannot be negative']
     },
+    previewImage: {
+        type: String, 
+        default: null, 
+        trim: true,
+    },
+    sizeOptions: {
+        type: Boolean,
+        default: false,
+    },
     buyingOption: [{
         size: {
             type: String,

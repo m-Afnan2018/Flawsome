@@ -20,7 +20,7 @@ const ProductCard = ({ data }) => {
     return (
         <div className={`${style.ProductCard} ${location.pathname === '/search' && style.search}`}>
             <div className={style.img} style={{ backgroundImage: `url(${data.images[0]})` }} onClick={() => navigate(`/product/${data._id}`)}>
-                <div className={style.topLeft}>{(data.maxDiscount * 100).toFixed(0)}% OFF</div>
+                {data.maxDiscount !== 0 && <div className={style.topLeft}>{(data.maxDiscount * 100).toFixed(0)}% OFF</div>}
                 <div className={style.topRight} onClick={quickView}>Quick View</div>
                 <div className={style.bottomLeft}>{data.rating} ★</div>
                 <div className={style.bottomRight}><FaOpencart /></div>
@@ -28,7 +28,7 @@ const ProductCard = ({ data }) => {
             <div className={style.details}>
                 <h3 onClick={() => navigate(`/product/${data._id}`)}>{data?.name}</h3>
                 <h5>{data.category || 'Fashion'}</h5>
-                <h4 onClick={() => navigate(`/product/${data._id}`)}>Starting from ₹{data.minPrice}</h4>
+                <h4 onClick={() => navigate(`/product/${data._id}`)}>Only at ₹{data.minPrice}</h4>
             </div>
         </div>
     )

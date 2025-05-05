@@ -34,6 +34,7 @@ const EditProductForm = ({ setData, data }) => {
     const [detail, setDetail] = useState('');
     const [heading, setHeading] = useState('');
     const [addingOption, setAddingOption] = useState(false);
+    const [addSizeOption, setAddSizeOption] = useState(false);
 
     const {
         register,
@@ -81,20 +82,6 @@ const EditProductForm = ({ setData, data }) => {
 
     const addProductHandler = async (formData) => {
         formData.details = JSON.stringify(details);
-        formData.buyingOptions = JSON.stringify(options);
-        if (!isNaN(formData.originalPrice) && !isNaN(formData.discountedPrice) && formData.originalPrice < formData.discountedPrice) {
-            setError('discountedPrice', {
-                type: 'manual',
-                message: 'Discounted Price must be less than Original Price'
-            });
-            return;
-        }
-        if (!isNaN(formData.stocks)) {
-            setError('stocks', {
-                type: 'manual',
-                message: 'Stocks must be a number'
-            })
-        }
         if (!images || images.length === 0) {
             setError('images')
             return;
@@ -105,6 +92,17 @@ const EditProductForm = ({ setData, data }) => {
                 message: 'Atleast one detail is required'
             });
             return;
+        }
+        if (addSizeOption) {
+            formData.buyingOptions = JSON.stringify(options);
+        } else {
+            const addedOption = {
+                size: 'NA',
+                originalPrice: getValues('originalSinglePrice'),
+                discountedPrice: getValues('discountedSinglePrice'),
+                stock: getValues('stocksSingle')
+            }
+            formData.buyingOptions = JSON.stringify([addedOption]);
         }
         formData.images = images;
         formData.productId = id;
@@ -268,8 +266,6 @@ const EditProductForm = ({ setData, data }) => {
                     {errors.description && <span>{errors.description.message}</span>}
                 </div>
 
-
-
                 {/* Category */}
                 <div>
                     <label htmlFor="category">Category</label>
@@ -331,8 +327,20 @@ const EditProductForm = ({ setData, data }) => {
                     {errors.details && <span>{errors.details.message}</span>}
                 </div>
 
+
+                {/* Add Size Option */}
+                <div>
+                    <label htmlFor="setOptions">Add size options</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" onChange={(val) => setAddSizeOption(val.target.checked)} />
+                        <div class="toggle-switch-background">
+                            <div class="toggle-switch-handle"></div>
+                        </div>
+                    </label>
+                </div>
+
                 {/* Buying Options */}
-                <div className={style.buyingOptions}>
+                {addSizeOption ? <div className={style.buyingOptions}>
                     <label htmlFor="buyingOptions">Buying Options</label>
                     <div>
                         {options.length > 0 &&
@@ -408,7 +416,35 @@ const EditProductForm = ({ setData, data }) => {
                     {errors.originalPrice && <span>{errors.originalPrice.message}</span>}
                     {errors.discountedPrice && <span>{errors.discountedPrice.message}</span>}
                     {errors.buyingOptions && <span>{errors.buyingOptions.message}</span>}
-                </div>
+                </div> : <div>
+                    <div>
+                        <label htmlFor="originalSinglePrice">Original Price</label>
+                        <input
+                            type="text"
+                            id="originalSinglePrice"
+                            placeholder='Original Price'
+                            {...register('originalSinglePrice')}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="discountedSinglePrice">Discounted Price</label>
+                        <input
+                            type="text"
+                            id="discountedSinglePrice"
+                            placeholder='Discounted Price'
+                            {...register('discountedSinglePrice')}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="stocksSingle">Stocks</label>
+                        <input
+                            type="text"
+                            id="stocksSingle"
+                            placeholder='stocks'
+                            {...register('stocksSingle')}
+                        />
+                    </div>
+                </div>}
 
                 {/* Images */}
                 <div className={style.imageSection}>

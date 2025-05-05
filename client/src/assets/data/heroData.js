@@ -11,65 +11,72 @@ import image9 from '../images/banners/image9.jpg';
 const heroData = [
     {
         "id": 1,
-        "url": image1,
-        "heading": "Elegant Sarees for Every Occasion",
-        "detail": "Explore our collection of traditional and modern sarees.",
+        "smallImage": image1,
+        "title": "Elegant Sarees for Every Occasion",
+        "description": "Explore our collection of traditional and modern sarees.",
         "alt": "Elegant Sarees"
     },
     {
         "id": 2,
-        "url": image2,
-        "heading": "Exclusive Wedding Collection",
-        "detail": "Make your special day unforgettable with our wedding sarees.",
+        "smallImage": image2,
+        "title": "Exclusive Wedding Collection",
+        "description": "Make your special day unforgettable with our wedding sarees.",
         "alt": "Wedding Collection"
     },
     {
         "id": 3,
-        "url": image3,
-        "heading": "Festive Sarees",
-        "detail": "Celebrate in style with our vibrant festive sarees.",
+        "smallImage": image3,
+        "largeImage": image3,
+        "title": "Festive Sarees",
+        "description": "Celebrate in style with our vibrant festive sarees.",
         "alt": "Festive Sarees"
     },
     {
         "id": 4,
-        "url": image4,
-        "heading": "Designer Sarees",
-        "detail": "Discover unique designs crafted by top designers.",
+        "smallImage": image4,
+        "largeImage": image4,
+        "title": "Designer Sarees",
+        "description": "Discover unique designs crafted by top designers.",
         "alt": "Designer Sarees"
     },
     {
         "id": 5,
-        "url": image5,
-        "heading": "Daily Wear Sarees",
-        "detail": "Comfortable and stylish sarees for everyday wear.",
+        "smallImage": image5,
+        "largeImage": image5,
+        "title": "Daily Wear Sarees",
+        "description": "Comfortable and stylish sarees for everyday wear.",
         "alt": "Daily Wear Sarees"
     },
     {
         "id": 6,
-        "url": image6,
-        "heading": "Silk Sarees",
-        "detail": "Experience the luxury of pure silk sarees.",
+        "smallImage": image6,
+        "largeImage": image6,
+        "title": "Silk Sarees",
+        "description": "Experience the luxury of pure silk sarees.",
         "alt": "Silk Sarees"
     },
     {
         "id": 7,
-        "url": image7,
-        "heading": "Party Wear Sarees",
-        "detail": "Shine bright at every party with our exclusive collection.",
+        "smallImage": image7,
+        "largeImage": image7,
+        "title": "Party Wear Sarees",
+        "description": "Shine bright at every party with our exclusive collection.",
         "alt": "Party Wear Sarees"
     },
     {
         "id": 8,
-        "url": image8,
-        "heading": "Handloom Sarees",
-        "detail": "Support artisans with our exquisite handloom sarees.",
+        "smallImage": image8,
+        "largeImage": image8,
+        "title": "Handloom Sarees",
+        "description": "Support artisans with our exquisite handloom sarees.",
         "alt": "Handloom Sarees"
     },
     {
         "id": 9,
-        "url": image9,
-        "heading": "Cotton Sarees",
-        "detail": "Stay cool and comfortable with our cotton sarees.",
+        "smallImage": image9,
+        "largeImage": image9,
+        "title": "Cotton Sarees",
+        "description": "Stay cool and comfortable with our cotton sarees.",
         "alt": "Cotton Sarees"
     }
 ];

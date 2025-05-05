@@ -4,7 +4,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: var(--sunset);
+    /* background-color: var(--sunset); */
+    background-color: #fde3cc;
     padding: 1rem 2.5%;
     position: relative;
     gap: 0.5rem;

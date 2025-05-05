@@ -54,3 +54,14 @@ export const reviewEndpoints = {
     UPDATE_REVIEW: `${BASE_URL}/review/updateReview`,
     DELETE_REVIEW: `${BASE_URL}/review/deleteReview`,
 }
+
+export const siteEndpoints = {
+    GET_SITE: `${BASE_URL}/site/getSiteData`,
+    ADD_SITE: `${BASE_URL}/site/addSiteData`,
+    UPDATE_SITE_ARRANGEMENT: `${BASE_URL}/site/updateSiteArrangements`,
+    UPDATE_SITE: `${BASE_URL}/site/updateSiteData`,
+    GET_BANNER: `${BASE_URL}/site/getBanner`,
+    UPDATE_BANNER: `${BASE_URL}/site/updateBanner`,
+    GET_FOOTER: `${BASE_URL}/site/getFooter`,
+    UPDATE_FOOTER: `${BASE_URL}/site/updateFooter`,
+}

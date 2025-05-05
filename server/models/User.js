@@ -72,7 +72,7 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.post('save', async function () {
-    await mailSender(this.email, 'Welcome to Uri & Mackenzie', welcomeMail());
+    await mailSender(this.email, 'Welcome to Flawsome', welcomeMail());
 })
 
 module.exports = mongoose.model('User', userSchema);;

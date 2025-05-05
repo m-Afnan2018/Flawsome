@@ -19,6 +19,7 @@ const productRoutes = require('./routes/productRoutes')
 const orderRoutes = require('./routes/orderRoutes')
 const reviewRoutes = require('./routes/reviewRoutes')
 const shiprocketRoutes = require('./routes/shiprockRoutes');
+const siteRoutes = require('./routes/siteRoutes');
 
 //  Middlewares
 app.use(cors({
@@ -40,6 +41,7 @@ app.use('/api/v1/order', orderRoutes)
 app.use('/api/v1/products', productRoutes)
 app.use('/api/v1/review', reviewRoutes)
 app.use('/api/v2/shprckt', shiprocketRoutes)
+app.use('/api/v1/site', siteRoutes)
 
 app.get('/', (req, res) => {
     return res.status(200).json({ success: true, message: "Server is runnng good 🚀" });

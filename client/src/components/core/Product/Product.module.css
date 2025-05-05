@@ -184,6 +184,10 @@
     align-items: center;
     gap: 1rem;
 }
+.ProductDetail>div>div:nth-last-child(1)>button {
+    background-color: rgb(151, 16, 16);
+    font-family: 'Tilt Warp';
+}
 
 .ProductDetail>div:nth-child(2)>div:nth-last-child(1) button {
     width: 100%;

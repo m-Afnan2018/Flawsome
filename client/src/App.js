@@ -29,7 +29,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { verifyAccount } from 'services/operations/authAPI';
 import { getToken, getUser } from 'services/operations/userAPI';
-import { getCategory, getColors } from 'services/operations/productAPI';
+import { getCategory } from 'services/operations/productAPI';
 import Dashboard from 'components/core/Admin/Dashboard';
 import ManageProducts from 'components/core/Admin/ManageProducts';
 import EditProduct from 'components/core/Admin/EditProduct';
@@ -40,6 +40,9 @@ import OrderDetail from 'components/common/OrderDetail/OrderDetail';
 import { getMyCart, getMyWishlist, updateMyCart, updateMyWishlist } from 'services/operations/orderAPI';
 import Wishlist from 'pages/Wishlist/Wishlist';
 import QuickView from 'components/common/QuickView/QuickView';
+import HomeSettings from 'components/core/Admin/HomeSettings';
+import { getSiteData } from 'services/operations/siteAPI';
+import { setBanners } from 'slices/siteSlice';
 
 function App() {
     const { pathname } = useLocation();
@@ -47,8 +50,8 @@ function App() {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
-          });
-      }, [pathname]);
+        });
+    }, [pathname]);
 
 
     const { user, isLogin } = useSelector(state => state.user);
@@ -64,7 +67,9 @@ function App() {
 
     useEffect(() => {
         getCategory(dispatch);
-        getColors(dispatch);
+        getSiteData((data) => {
+            dispatch(setBanners(data))
+        });
         if (isLogin) {
             getToken(dispatch);
         }
@@ -122,6 +127,7 @@ function App() {
                 <Route path='/booking' element={<ProtectedRoute><Booking /></ProtectedRoute>} />
                 <Route path='/admin' element={<AdminRoute><Admin /></AdminRoute>} >
                     <Route path='/admin/dashboard' element={<Dashboard />} />
+                    <Route path='/admin/home' element={<HomeSettings />} />
                     <Route path='/admin/manage-products' element={<ManageProducts />} />
                     <Route path='/admin/product' element={<EditProduct />} />
                     <Route path='/admin/product/:id' element={<EditProduct />} />

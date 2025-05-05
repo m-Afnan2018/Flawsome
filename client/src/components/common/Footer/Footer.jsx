@@ -22,7 +22,7 @@ const Footer = () => {
                     </div>
                     <div className={style.contactItem}>
                         <MdOutlineCall className={style.icon} />
-                        <a href={`tel:${userData.phone}`}>+91 {userData.phone}<br />Mon - Sat - 11:00 am to 6:00 pm (IST)</a>
+                        <a href={`tel:${userData.phone}`}>+91 {userData.phone}<br /></a>
                     </div>
                 </div>
                 <div className={style.aboutUs}>

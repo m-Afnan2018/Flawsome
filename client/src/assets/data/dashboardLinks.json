@@ -4,6 +4,10 @@
     "link": "/admin/dashboard"
   },
   {
+    "title": "Home Data",
+    "link": "/admin/home"
+  },
+  {
     "title": "Add Category",
     "link": "/admin/add-category"
   },
