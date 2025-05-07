@@ -45,7 +45,7 @@ const heroData = [
         "id": 5,
         "smallImage": image5,
         "largeImage": image5,
-        "title": "Daily Wear Sarees",
+        "title": "Everyday Wear Sarees",
         "description": "Comfortable and stylish sarees for everyday wear.",
         "alt": "Daily Wear Sarees"
     },

@@ -121,7 +121,7 @@ const ProductDetail = ({ product }) => {
                     name: `${product.name} - ${selectedSize.size}`,
                     description: product.description,
                     image: product.images[0],
-                    price: selectedSize.price,
+                    price: selectedSize.discountedPrice,
                     sizeId: selectedSize._id,
                     quantity: 1,
                     maxQuantity: selectedSize.stock
@@ -144,7 +144,7 @@ const ProductDetail = ({ product }) => {
             name: `${product.name}- ${selectedSize.size}`,
             description: product.description,
             image: product.images[0],
-            price: selectedSize.price,
+            price: selectedSize.discountedPrice,
 
         }
         if (wishlist) {
