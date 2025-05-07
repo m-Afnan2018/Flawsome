@@ -66,6 +66,7 @@ const ProductDetail = ({ product }) => {
     const [checkCart, setCheckCart] = useState(0)
     const [checkWishlist, setCheckWishlist] = useState(0)
 
+    // eslint-disable-next-line no-unused-vars
     const [maxDiscount, setMaxDiscount] = useState(0);
 
     const handleCart = async (val) => {
@@ -240,14 +241,14 @@ const ProductDetail = ({ product }) => {
                     <h4>{product.description}</h4>
                 </CollapsibleSection>
 
-                <CollapsibleSection title="Offers">
+                {/* <CollapsibleSection title="Offers">
                     <ul>
                         <li>3 Days Replacement Guarantee</li>
                         <li>Free Delivery on orders above ₹499</li>
                         {selectedSize && selectedSize.originalPrice !== selectedSize.discountedPrice && <li>Upto {maxDiscount}% discount</li>}
                         {product.cashOnDelivery && <li>Cash On Delivery Available</li>}
                     </ul>
-                </CollapsibleSection>
+                </CollapsibleSection> */}
 
                 <CollapsibleSection title="Information">
                     <table className={style.detailsTable}>

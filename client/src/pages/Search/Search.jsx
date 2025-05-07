@@ -24,10 +24,10 @@ const Search = () => {
         setProducts(null);
 
         if (searchParams.get('page')) {
-            query.page = parseInt(searchParams.get('page'), 10);
+            query.page = `page=${parseInt(searchParams.get('page'), 10)}`;
         }
         if (searchParams.get('limit')) {
-            query.limit = parseInt(searchParams.get('limit'), 10);
+            query.limit = `limit=${parseInt(searchParams.get('limit'), 10)}`;
         }
         if (searchParams.get('category')) {
             query.category = `category=${searchParams.get('category')}`;

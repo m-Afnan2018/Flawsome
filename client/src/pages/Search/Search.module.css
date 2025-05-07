@@ -16,8 +16,10 @@
 }
 
 .sideBar button{
-    padding: 0 0.75rem;
-    font-weight: 600;
+    font-family: 'Inter';
+    font-weight: 400;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
 }
 .sideBar button:hover{
     background-color: var(--burnt-sienna);
@@ -27,6 +29,8 @@
 select {
     width: 100% !important;
     min-width: auto !important;
+    font-family: 'Inter';
+    font-weight: 400;
 }
 
 .main {

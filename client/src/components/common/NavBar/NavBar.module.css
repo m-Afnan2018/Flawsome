@@ -5,7 +5,8 @@
     align-items: center;
     flex-direction: column;
     /* background-color: var(--sunset); */
-    background-color: #fde3cc;
+    /* background-color: #fde3cc; */
+    background: linear-gradient(90deg, rgb(34 9 33) 0%, rgb(1 1 1) 50%, rgb(197 148 193) 100%);
     padding: 1rem 2.5%;
     position: relative;
     gap: 0.5rem;
@@ -119,6 +120,9 @@
 }
 
 @media (max-width:768px) {
+    .NavBar{
+        background: linear-gradient(90deg, rgb(57 17 55) 0%, rgb(85 39 82) 53%, rgb(169 112 164) 100%);
+    }
     .hide {
         display: none !important;
     }

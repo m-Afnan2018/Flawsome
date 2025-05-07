@@ -28,7 +28,7 @@ const ProductCard = ({ data }) => {
             <div className={style.details}>
                 <h3 onClick={() => navigate(`/product/${data._id}`)}>{data?.name}</h3>
                 <h5>{data.category || 'Fashion'}</h5>
-                <h4 onClick={() => navigate(`/product/${data._id}`)}>Only at ₹{data.minPrice}</h4>
+                <h4 onClick={() => navigate(`/product/${data._id}`)}>Price ₹{data.minPrice}</h4>
             </div>
         </div>
     )

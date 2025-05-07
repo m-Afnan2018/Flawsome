@@ -26,21 +26,22 @@ const HeroSlider = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    useEffect(()=>{
-        if(banners===null  || banners.length === 0){
+    useEffect(() => {
+        if (banners === null || banners.length === 0) {
             setData(slideImages);
-        }else{
+        } else {
             setData(banners);
         }
     }, [banners])
 
     return (
         <div className={style.HeroSlider}>
-            <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} swipeable={false} showIndicators={false} autoPlay={false} interval={3000} transitionTime={500}>
+            <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} swipeable={false} showIndicators={false} autoPlay={true} interval={3000} transitionTime={500}>
                 {data.map((image, index) => (
                     <div key={index} className={style.Slide}>
                         <img src={isMobile ? image.smallImage : image.largeImage} alt={image.alt} className={style.SlideImage} />
-                        <div>
+                        <div className={style.blurBackground} />
+                        <div className={style.details}>
                             <h2>{image.title}</h2>
                             <h3>{image.description}</h3>
                         </div>

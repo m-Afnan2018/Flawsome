@@ -1,28 +1,32 @@
 import React from 'react'
 import style from './Home.module.css'
-import { TbTruckDelivery } from "react-icons/tb";
-import { IoCardOutline } from 'react-icons/io5'
-import { MdOutlineWorkspacePremium } from 'react-icons/md';
-import { RiScissorsCutFill } from "react-icons/ri";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { GoShieldCheck } from "react-icons/go";
+import { CiShoppingTag } from "react-icons/ci";
+import { LiaWalletSolid } from "react-icons/lia";
 
 const Why = () => {
     return (
         <div className={style.Why}>
             <div>
-                <TbTruckDelivery />
-                <p>Free Shipping</p>
+                <CiDeliveryTruck />
+                <h2>FREE SHIPPING</h2>
+                <p>pan india</p>
             </div>
             <div>
-                <IoCardOutline />
-                <p>Hassel free payments</p>
+                <GoShieldCheck />
+                <h2>Guaranteed Quality</h2>
+                <p>best quality saree</p>
             </div>
             <div>
-                <MdOutlineWorkspacePremium />
-                <p>Premium Quality</p>
+                <CiShoppingTag />
+                <h2>BEST PRICE</h2>
+                <p>directly from weaver to you</p>
             </div>
             <div>
-                <RiScissorsCutFill />
-                <p>Free Alterations</p>
+                <LiaWalletSolid />
+                <h2>FAST & SECURE PAYMENTS</h2>
+                <p>hassel free payemnt</p>
             </div>
 
         </div>

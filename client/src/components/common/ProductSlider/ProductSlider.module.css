@@ -30,10 +30,10 @@
 
 .ProductSlider>div>div {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .ProductSlider>button {
@@ -42,14 +42,15 @@
     align-self: center;
     border: none;
     background: transparent;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid hsla(234, 20%, 30%, 1);
     border-radius: 0;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    color: hsla(234, 20%, 30%, 1);
 }
 
 .ProductSlider>button:hover {
-    color: var(--cambridge-blue);
+    color: var(--delft-blue);
 }
 
 .ProductSlider>div button {
@@ -65,5 +66,8 @@
     }
     .ProductSlider>p{
         font-size: 1.5rem;
+    }
+    .ProductSlider>div>div {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 }
