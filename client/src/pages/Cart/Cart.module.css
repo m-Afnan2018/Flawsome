@@ -1,6 +1,7 @@
 .Cart {
     padding: 2rem;
     padding-top: 0;
+    background: linear-gradient(356deg, rgb(37, 10, 35) 20%, rgb(197, 148, 193));
 }
 
 .Cart>h3 {

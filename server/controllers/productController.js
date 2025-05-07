@@ -208,7 +208,7 @@ exports.getAllProduct = async (req, res) => {
         let products;
 
         products = await Product.aggregate([
-            { $match: query },
+            { $match: { ...query, deleted: { $ne: true } } },
             { $unwind: '$buyingOption' },
             {
                 $lookup: {

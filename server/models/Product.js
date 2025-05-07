@@ -58,6 +58,10 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    deleted: {
+        type: Boolean,
+        default: false,
+    },
     buyingOption: [{
         size: {
             type: String,

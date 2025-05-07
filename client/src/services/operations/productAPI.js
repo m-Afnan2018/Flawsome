@@ -3,7 +3,7 @@ import { apiConnector } from "services/apiConnector";
 import { productEndpoints } from "services/apis";
 import { setCategories, setColors } from "slices/productSlice";
 
-const { CREATE_PRODUCT, UPDATE_PRODUCT, GET_ALL_PRODUCT, GET_PRODUCT, CATEGORY, VARIENT, GRAPH, COLORS } = productEndpoints
+const { CREATE_PRODUCT, UPDATE_PRODUCT, GET_ALL_PRODUCT, DELETE_PRODUCT, GET_PRODUCT, CATEGORY, VARIENT, GRAPH, COLORS } = productEndpoints
 
 export const createProduct = async (data) => {
     const toastId = toast.loading('Creating Product');
@@ -64,6 +64,20 @@ export const getProduct = async (data, setter) => {
         }
     } catch (err) {
         setter(null)
+        toast.dismiss(toastId);
+        toast.error(err?.response?.data?.message);
+    }
+}
+
+export const deleteProduct = async (data) => {
+    const toastId = toast.loading('Deleting this product');
+    try {
+        const response = await apiConnector('DELETE', DELETE_PRODUCT, data);
+        if (response.data.success) {
+            toast.dismiss(toastId);
+            toast.success(response.data.message);
+        }
+    } catch (err) {
         toast.dismiss(toastId);
         toast.error(err?.response?.data?.message);
     }

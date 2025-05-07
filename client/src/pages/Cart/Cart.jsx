@@ -27,7 +27,7 @@ const Cart = () => {
     }
 
     return (
-        <div className={style.Cart} style={{ backgroundColor: `#ffdddd5c` }}>
+        <div className={style.Cart}>
             <h3>My Cart</h3>
             <div>
                 <ProductCart products={cart} type={'cart'} />

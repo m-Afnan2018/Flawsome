@@ -12,11 +12,12 @@ const SingleProduct = ({ product, type }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const addMore = async () => {
+    const addMore = async (e) => {
+        e.stopPropagation();
         if (type === 'cart') {
             if (product.quantity < product.maxQuantity) {
                 const updatedCart = cart.map(item =>
-                    item.productId === product.productId && item.subDetailId === product.subDetailId && item.sizeId === product.sizeId
+                    item.productId === product.productId && item.sizeId === product.sizeId
                         ? { ...item, quantity: item.quantity + 1 }
                         : item
                 );
@@ -40,7 +41,8 @@ const SingleProduct = ({ product, type }) => {
         }
     }
 
-    const remove = async () => {
+    const remove = async (e) => {
+        e.stopPropagation();
         if (type === 'cart') {
             if (product.quantity > 1) {
                 const updatedCart = cart.map(item =>
@@ -82,27 +84,29 @@ const SingleProduct = ({ product, type }) => {
     const handleClick = () => {
         if (type === 'order') {
             navigate(`/orders/${product.id}`)
+            return;
         }
+        navigate(`/product/${product._id}`)
     }
 
     return (
-        <div className={style.SingleProduct} style={{ cursor: type === 'order' ? 'pointer' : 'default' }} onClick={handleClick}>
+        <div className={style.SingleProduct} style={{ cursor: 'pointer' }} onClick={handleClick}>
             <img src={product.image} alt='product' />
             <div>
                 <h2>{product.name}</h2>
                 <h3>{product.description}</h3>
             </div>
             {type === 'cart' && <div>
-                <h2>Price: ₹{product.price * product.quantity} </h2>
+                <h2>Price: ₹{product.price} x {product.quantity} </h2>
                 <div className={style.buttons}>
-                    <button className='border-round-btn' onClick={remove}><MdRemove /></button>
+                    <button className='border-round-btn' onClick={(e)=>remove(e)}><MdRemove /></button>
                     <div className='primary-round-btn'>{product.quantity}</div>
-                    <button className='border-round-btn' onClick={addMore}><MdAdd /></button>
+                    <button className='border-round-btn' onClick={(e)=>addMore(e)}><MdAdd /></button>
                 </div>
             </div>}
             {type === 'wishlist' &&
                 <div>
-                    <button className='border-round-btn' onClick={remove}>Remove from Wishlist</button>
+                    <button className='border-round-btn' onClick={(e)=>remove(e)}>Remove from Wishlist</button>
                 </div>
             }
             {type === 'order' && <div>

@@ -24,6 +24,7 @@ export const userEndpoints = {
 export const productEndpoints = {
     CREATE_PRODUCT: `${BASE_URL}/products/createProduct`,
     UPDATE_PRODUCT: `${BASE_URL}/products/updateProduct`,
+    DELETE_PRODUCT: `${BASE_URL}/products/deleteProduct`,
     GET_ALL_PRODUCT: `${BASE_URL}/products/getAllProduct`,
     VARIENT: `${BASE_URL}/products/varient`,
     GET_PRODUCT: `${BASE_URL}/products/getProduct`,

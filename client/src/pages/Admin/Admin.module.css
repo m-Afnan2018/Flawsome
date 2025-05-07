@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: stretch;
     width: 100%;
+    background: linear-gradient(360deg, rgb(37, 10, 35) 20%, rgb(197, 148, 193));
 }
 
 .Outlet {

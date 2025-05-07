@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import style from './Order.module.css'
 import { getMyOrders } from 'services/operations/orderAPI';
 import ProductCart from 'components/common/ProductCart/ProductCart';
-import background from 'assets/images/background.png'
 
 function restructure(cart) {
     return cart.map(order => {
@@ -33,7 +32,7 @@ const Order = () => {
     }
 
     return (
-        <div className={style.Order} style={{ backgroundImage: `url(${background})` }}>
+        <div className={style.Order}>
             <h3>My Order</h3>
             <div>
                 {orders && <ProductCart products={restructure(orders)} type={'order'} />}

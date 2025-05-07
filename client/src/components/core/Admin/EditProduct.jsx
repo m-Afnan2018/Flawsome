@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import style from './Admin.module.css';
 import { MdClose, MdArrowUpward, MdArrowDownward, MdAdd, MdCheck, MdEdit, MdDelete, MdEditOff } from 'react-icons/md';
-import { createProduct, getProduct, updateProduct } from 'services/operations/productAPI';
+import { createProduct, getProduct, updateProduct, deleteProduct } from 'services/operations/productAPI';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -251,6 +251,11 @@ const EditProductForm = ({ setData, data }) => {
             setImages(temp);
         }
     };
+
+    const deleting = async ()=>{
+        await deleteProduct({id: data._id});
+        navigate('/admin/manage-products');
+    }
     return (
         <form key='product-form' className={style.productForm} onSubmit={handleSubmit(addProductHandler)}>
             <div>
@@ -474,6 +479,7 @@ const EditProductForm = ({ setData, data }) => {
                 </div>
 
                 <button type="submit" className='border-round-btn'>{data ? 'Update Product' : 'Add Product'}</button>
+                {data && <button className='border-round-btn' onClick={deleting}>Delete Product</button>}
             </div>
         </form>
     );

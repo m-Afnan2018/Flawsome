@@ -18,7 +18,7 @@ const Footer = () => {
                     </div>
                     <div className={style.contactItem}>
                         <MdOutlineMailOutline className={style.icon} />
-                        <a href={userData.email}>@Flawsome</a>
+                        <a href={`mailto:${userData.email}`}>@Flawsome</a>
                     </div>
                     <div className={style.contactItem}>
                         <MdOutlineCall className={style.icon} />

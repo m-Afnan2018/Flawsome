@@ -1,20 +1,17 @@
 .ProductCart {
+    align-items: flex-start;
+    background: var(--eggshell);
+    border: 4px solid var(--delft-blue);
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
-    gap: 1rem;
-    border: 4px solid var(--delft-blue);
-    width: 100%;
-    border-radius: 2.25rem;
-    overflow: hidden;
     min-height: 60vh;
-    background: var(--eggshell);
-    box-shadow: 10px 10px 1px 0px var(--cambridge-blue);
+    overflow: hidden;
+    width: 100%;
 }
 
 .SingleProduct {
-    padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +23,8 @@
 
 .SingleProduct img {
     width: 6rem;
-    border-radius: 1rems;
+    height: 8rem;
+    object-fit: cover;
 }
 
 .SingleProduct>div:nth-child(2) {
@@ -35,6 +33,7 @@
     justify-content: center;
     align-items: flex-start;
     flex-grow: 1;
+    width: 30%;
 }
 
 .SingleProduct h2 {
@@ -46,6 +45,10 @@
 .SingleProduct h3 {
     font-size: 1rem;
     font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%
 }
 
 .SingleProduct>div:nth-child(3) {
@@ -56,6 +59,7 @@
     gap: 1rem;
     height: 6rem;
     font-size: 0.85rem;
+    padding: 1rem;
 }
 
 .buttons {
@@ -124,9 +128,16 @@
     .SingleProduct img {
         width: 100%;
         border-radius: 1rems;
+        width: 100%;
+        height: 20rem;
     }
 
     .SingleProduct>div:nth-child(2) {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .SingleProduct>div:nth-child(2)>h3{
         width: 100%;
     }
 
