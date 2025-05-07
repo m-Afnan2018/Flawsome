@@ -25,8 +25,9 @@ const Dashboard = () => {
     let outOfStock = 0;
     let total = 0;
     products?.forEach((item) => {
+        total+=item.totalBuyingOption;
         if (item.stock === 0) {
-            outOfStock++;
+            outOfStock+=item.totalOutOfStock;
         }
     });
 

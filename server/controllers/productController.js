@@ -208,7 +208,15 @@ exports.getAllProduct = async (req, res) => {
         let products;
 
         products = await Product.aggregate([
-            { $match: { ...query, deleted: { $ne: true } } },
+            {
+                $match: {
+                    ...query,
+                    $or: [
+                        { deleted: { $ne: true } },
+                        { deleted: { $exists: false } }
+                    ]
+                }
+            },
             { $unwind: '$buyingOption' },
             {
                 $lookup: {
@@ -240,8 +248,8 @@ exports.getAllProduct = async (req, res) => {
                     maxPrice: { $max: '$buyingOption.discountedPrice' },
                     minStock: { $min: '$buyingOption.stock' },
                     maxStock: { $max: '$buyingOption.stock' },
-                    maxDiscount: { 
-                        $max: { 
+                    maxDiscount: {
+                        $max: {
                             $cond: [
                                 { $gt: ['$buyingOption.originalPrice', 0] },
                                 {
@@ -447,8 +455,28 @@ exports.deleteCategory = async (req, res) => {
 
 exports.getGraphData = async (req, res) => {
     try {
-        // Fetch products
-        const products = await Product.find({}, { name: 1, 'stock': 1, category: 1 });
+        // Fetch non-deleted products with required fields
+        const products = await Product.find({
+            $or: [{ deleted: false }, { deleted: { $exists: false } }]
+        }).select('name category buyingOption').lean();
+
+        let totalBuyingOptions = 0;
+        let totalOutOfStock = 0;
+
+        // Modify each product to include its own totalBuyingOption and totalOutOfStock
+        const updatedProducts = products.map(product => {
+            const productTotalOptions = product.buyingOption.length;
+            const productOutOfStock = product.buyingOption.filter(opt => opt.stock === 0).length;
+
+            totalBuyingOptions += productTotalOptions;
+            totalOutOfStock += productOutOfStock;
+
+            return {
+                ...product,
+                totalBuyingOption: productTotalOptions,
+                totalOutOfStock: productOutOfStock,
+            };
+        });
 
         // Fetch orders
         const orders = await Order.find({}, { totalPrice: 1, orderDetails: 1, createdAt: 1 }).lean();
@@ -458,7 +486,7 @@ exports.getGraphData = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            products,
+            products: updatedProducts,
             orders,
             users,
         });
