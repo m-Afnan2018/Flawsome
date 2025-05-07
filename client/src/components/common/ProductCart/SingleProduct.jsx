@@ -29,7 +29,7 @@ const SingleProduct = ({ product, type }) => {
         if (type === 'return') {
             if (product.quantity < product.maxQuantity) {
                 const updatedCart = returnCart.map(item =>
-                    item._id === product._id
+                    item._id === product.productId
                         ? { ...item, currQty: item.currQty + 1 }
                         : item
                 );
@@ -63,7 +63,7 @@ const SingleProduct = ({ product, type }) => {
         if (type === 'return') {
             if (product.currQty > 0) {
                 const updatedCart = returnCart.map(item =>
-                    item._id === product._id
+                    item._id === product.productId
                         ? { ...item, quantity: item.quantity - 1 }
                         : item
                 );
@@ -83,10 +83,11 @@ const SingleProduct = ({ product, type }) => {
 
     const handleClick = () => {
         if (type === 'order') {
-            navigate(`/orders/${product.id}`)
+            navigate(`/orders/${product.productId}`)
             return;
         }
-        navigate(`/product/${product._id}`)
+        console.log(product);
+        navigate(`/product/${product.productId}`)
     }
 
     return (

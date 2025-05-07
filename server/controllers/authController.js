@@ -35,7 +35,7 @@ const getVerifyLink = async (req, res) => {
         })
         await tokenObj.save()
 
-        await mailSender(user.email, 'Uri&Mackenzie - Verify your account', verifyMail(user.fullname, token));
+        await mailSender(user.email, 'Flawsome - Verify your account', verifyMail(user.fullname, token));
 
         //  Send response 
         res.status(200).json({
@@ -87,7 +87,7 @@ const getResetPasswordLink = async (req, res) => {
         }
         const already = await Token.findOne({ user: user._id, type: "reset" });
         if (already) {
-            mailSender(user.email, 'Uri&Mackenzie - Reset your password', resetMail(user.fullname, already.token));
+            mailSender(user.email, 'Flawsome - Reset your password', resetMail(user.fullname, already.token));
             return res.status(200).json({
                 success: true,
                 message: 'New link sent'

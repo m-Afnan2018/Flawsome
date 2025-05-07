@@ -20,6 +20,7 @@ const mailSender = async(to, subject, html)=>{
         }
     
         const send = tranporter.sendMail(options, (err)=>{
+            console.log("Error: ", err);
         })
 
         return send;
