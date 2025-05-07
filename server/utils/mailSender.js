@@ -23,6 +23,8 @@ const mailSender = async(to, subject, html)=>{
             console.log("Error: ", err);
         })
 
+        console.log(send)
+
         return send;
     }catch(err){
         console.log("Unable to send the mail: ", err);

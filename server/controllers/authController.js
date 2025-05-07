@@ -18,7 +18,7 @@ const getVerifyLink = async (req, res) => {
         }
         const already = await Token.findOne({ user: user._id, type: "verification" });
         if (already) {
-            await mailSender(user.email, 'Uri&Mackenzie - Verify your account', verifyMail(user.fullname, already.token));
+            await mailSender(user.email, 'Flawsome - Verify your account', verifyMail(user.fullname, already.token));
             return res.status(200).json({
                 success: true,
                 message: 'New link sent'
@@ -103,7 +103,7 @@ const getResetPasswordLink = async (req, res) => {
             expirationDate: new Date(Date.now() + (15 * 60 * 1000)),
         })
         await tokenObj.save()
-        mailSender(user.email, 'Uri&Mackenzie - Reset your password', resetMail(user.fullname, token));
+        mailSender(user.email, 'Flawsome - Reset your password', resetMail(user.fullname, token));
 
         //  Send response 
         res.status(200).json({
