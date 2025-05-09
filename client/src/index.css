@@ -192,10 +192,16 @@ select {
   background-color: var(--eggshell);
   padding: 0.25rem 0.5rem;
   color: hsla(234, 20%, 30%, 1);
-  font-size: 1rem;
   border: 0.125rem solid var(--delft-blue);
   border-radius: 0.5rem;
-  font-weight: 700;
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+input:disabled,
+textarea:disabled,
+select:disabled {
+  color: #896f87;
 }
 
 textarea {

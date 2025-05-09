@@ -3,7 +3,7 @@ import { apiConnector } from "services/apiConnector";
 import { authEndpoints } from "services/apis";
 import { setIsLogin, setToken, setUser } from "slices/userSlice";
 
-const { GET_RESET_PASSWORD_LINK, GET_VERIFICATION_LINK, RESET_PASSWORD, VERIFIED_USER } = authEndpoints
+const { GET_RESET_PASSWORD_LINK, GET_VERIFICATION_LINK, RESET_PASSWORD, VERIFIED_USER, SEND_OTP } = authEndpoints
 
 export const getVerifyLink = async () => {
     const toastId = toast.loading('Loading...')
@@ -69,6 +69,21 @@ export const resetPassword = async (data, dispatch, navigate) => {
             dispatch(setIsLogin(false));
             localStorage.removeItem("loggedIn");
             navigate('/login')
+        }
+    } catch (err) {
+        toast.dismiss(toastId);
+        toast.error(err.response.data.message);
+    }
+}
+
+export const sendOTP = async (data)=>{
+    const toastId = toast.loading('Loading...')
+    try {
+        const response = await apiConnector('POST', SEND_OTP, data);
+
+        if (response.data.success) {
+            toast.dismiss(toastId);
+            toast.success(response.data.message);
         }
     } catch (err) {
         toast.dismiss(toastId);

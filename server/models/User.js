@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
     },
     isVerified: {
         type: Boolean,
-        default: false,
+        default: true,
     },
     userType: {
         type: String,
@@ -72,7 +72,7 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.post('save', async function () {
-    await mailSender(this.email, 'Welcome to Flawsome', welcomeMail());
+    await mailSender(this.email, 'Welcome to Flawsome', welcomeMail(this.fullname));
 })
 
 module.exports = mongoose.model('User', userSchema);;

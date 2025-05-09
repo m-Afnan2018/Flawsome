@@ -9,6 +9,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 import slideImages from 'assets/data/heroData'
 import { useSelector } from 'react-redux';
+import { sendOTP } from 'services/operations/authAPI';
 
 const Signup = () => {
     const {
@@ -16,15 +17,49 @@ const Signup = () => {
         handleSubmit,
         formState: { errors },
         watch,
+        setValue
     } = useForm();
+
+    const [loginType, setLoginType] = useState('email');
+    const [saveData, setSaveData] = useState(false);
+
+    useEffect(()=>{
+        setValue('fullname', '')
+        setValue('email', '')
+        setValue('phone', '')
+        setValue('password', '')
+        setValue('confirmPassword', '')
+        setValue('otp', '')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loginType])
+
 
     const password = watch('password');
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
         // Handle form submission logic here
-        signupUser(data, navigate);
+
+        if (saveData) {
+            signupUser(data, navigate);
+            return;
+        }
+        if (loginType === 'email') {
+            sendOTP({ email: data.email });
+        } else {
+            sendOTP({ phone: data.phone });
+        }
+        setSaveData(data);
     };
+
+    const resendOTP = () => {
+        console.log(saveData);
+        if (saveData.email !== "") {
+            sendOTP({ email: saveData.email });
+        } else if (saveData.phone !== "") {
+            sendOTP({ phone: saveData.phone });
+        }
+    }
 
 
     const [data, setData] = useState(slideImages);
@@ -66,23 +101,33 @@ const Signup = () => {
                         ))}
                     </Carousel>
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} autocomplete="off">
                     <h2>Sign Up</h2>
                     <div>
                         <div>
                             <label htmlFor="fullname">Full Name</label>
                             <input
+                                autoComplete="off" // Use a non-standard value
+                                autoCorrect="off"         // Disable auto-correction
+                                autoCapitalize="none"     // Disable auto-capitalization
+                                spellCheck="false"        // Disable spell checkings
                                 type="text"
                                 id="fullname"
+                                disabled={saveData}
                                 {...register('fullname', { required: 'Full Name is required' })}
                             />
                             {errors.fullname && <span>{errors.fullname.message}</span>}
                         </div>
-                        <div>
+                        {loginType === 'email' ? <div>
                             <label htmlFor="email">Email</label>
                             <input
                                 type="email"
                                 id="email"
+                                autoComplete="off" // Use a non-standard value
+                                autoCorrect="off"         // Disable auto-correction
+                                autoCapitalize="none"     // Disable auto-capitalization
+                                spellCheck="false"        // Disable spell checkings
+                                disabled={saveData}
                                 {...register('email', {
                                     required: 'Email is required',
                                     pattern: {
@@ -92,12 +137,34 @@ const Signup = () => {
                                 })}
                             />
                             {errors.email && <span>{errors.email.message}</span>}
-                        </div>
+                        </div> :
+                            <div>
+                                <label htmlFor="phone">Phone number</label>
+                                <input
+                                    type="text"
+                                    id="phone"
+                                    autoComplete="off" // Use a non-standard value
+                                    autoCorrect="off"         // Disable auto-correction
+                                    autoCapitalize="none"     // Disable auto-capitalization
+                                    spellCheck="false"        // Disable spell checkings
+                                    disabled={saveData}
+                                    {...register('phone', {
+                                        required: 'Phone number is required',
+                                    })}
+                                />
+                                {errors.phone && <span>{errors.phone.message}</span>}
+                            </div>
+                        }
                         <div>
                             <label htmlFor="password">Password</label>
                             <input
                                 type="password"
                                 id="password"
+                                autoComplete="off" // Use a non-standard value
+                                autoCorrect="off"         // Disable auto-correction
+                                autoCapitalize="none"     // Disable auto-capitalization
+                                spellCheck="false"        // Disable spell checkings
+                                disabled={saveData}
                                 {...register('password', {
                                     required: 'Password is required',
                                     minLength: {
@@ -113,6 +180,11 @@ const Signup = () => {
                             <input
                                 type="password"
                                 id="confirmPassword"
+                                autoComplete="off" // Use a non-standard value
+                                autoCorrect="off"         // Disable auto-correction
+                                autoCapitalize="none"     // Disable auto-capitalization
+                                spellCheck="false"        // Disable spell checkings
+                                disabled={saveData}
                                 {...register('confirmPassword', {
                                     required: 'Confirm Password is required',
                                     validate: (value) =>
@@ -123,11 +195,35 @@ const Signup = () => {
                                 <span>{errors.confirmPassword.message}</span>
                             )}
                         </div>
+
+                        {saveData && <div>
+                            <label htmlFor="otp">OTP</label>
+                            <input
+                                type="text"
+                                id="otp"
+                                autoComplete="off" // Use a non-standard value
+                                autoCorrect="off"         // Disable auto-correction
+                                autoCapitalize="none"     // Disable auto-capitalization
+                                spellCheck="false"        // Disable spell checkings
+                                {...register('otp', {
+                                    required: 'OTP is required',
+                                })}
+                            />
+                            {errors.otp && (
+                                <span>{errors.otp.message}</span>
+                            )}
+                        </div>}
                     </div>
-                    <button type="submit" className='border-round-btn'>Sign Up</button>
-                    <div>
+                    {saveData && <div className={style.OTPbuttons}>
+                        <p onClick={() => setSaveData(false)}> Edit Data</p>
+                        <p onClick={resendOTP}> Resend OTP</p>
+                    </div>}
+                    <button type="submit" className='border-round-btn'>{saveData ? 'Sign Up' : 'Send OTP'}</button>
+                    {loginType === 'email' && <p onClick={() => setLoginType('phone')} className={style.loginTypeButton}>Sign Up with Phone number</p>}
+                    {loginType === 'phone' && <p onClick={() => setLoginType('email')} className={style.loginTypeButton}>Sign Up with Email ID</p>}
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <Link className='border-round-btn' to='/login'>Login</Link>
-                        <Link className='border-round-btn' to='/reset-password'>Forget Password ?</Link>
+                        {/* <Link className='border-round-btn' to='/reset-password'>Forget Password ?</Link> */}
                     </div>
                 </form>
             </div>

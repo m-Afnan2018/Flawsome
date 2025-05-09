@@ -3,8 +3,10 @@ const User = require("../models/User");
 const bcrypt = require('bcrypt')
 const { failed, customError } = require("../utils/errorHandler");
 const mailSender = require("../utils/mailSender");
+const speakeasy = require('speakeasy');
 const verifyMail = require("../mails/verify");
 const resetMail = require("../mails/reset");
+const OTP = require("../models/OTP");
 
 const getVerifyLink = async (req, res) => {
     try {
@@ -148,7 +150,62 @@ const resetPassword = async (req, res) => {
     }
 }
 
+const sendOTP = async (req, res) => {
+    try {
+        //  Fetch Data
+        const { email, phone } = req.body;
+        //  Validation
+        if (!email && !phone) {
+            throw customError('Either phone number or email Id required', 400);
+        }
+
+        if (email) {
+            const existingUser = await User.findOne({ email });
+            if (existingUser) {
+                throw customError('User Already Registered')
+            }
+        }
+        if (phone) {
+            const existingUser = await User.findOne({ phone });
+            if (existingUser) {
+                throw customError('User Already Registered')
+            }
+        }
+
+        //  Generate OTP
+        const otp = (() => {
+            return Math.floor(100000 + Math.random() * 900000).toString();
+        })()
+
+        let createOTP;
+        if (email) {
+            createOTP = new OTP({
+                otp, email
+            })
+        }
+        if (phone) {
+            createOTP = new OTP({
+                otp, phone
+            })
+        }
+
+        await createOTP.save();
+
+        //  Send Response
+        res.status(200).json({
+            success: true,
+            message: 'OTP Sent Successfully',
+        })
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
+
 exports.getVerifyLink = getVerifyLink;
 exports.verify = verify;
 exports.getResetPasswordLink = getResetPasswordLink;
 exports.resetPassword = resetPassword;
+exports.sendOTP = sendOTP;

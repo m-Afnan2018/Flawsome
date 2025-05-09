@@ -4,26 +4,50 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Address = require("../models/Address")
 const uploadMedia = require("../utils/fileUploader")
+const OTP = require("../models/OTP")
 
 exports.signup = async (req, res) => {
     try {
         //  Fetching
-        const { fullname, email, password } = req.body;
+        const { fullname, email, phone, password, otp } = req.body;
         //  Validation
-        if (!fullname || !email || !password || fullname.length === 0 || email.length === 0 || password.length < 8) {
+        if (!fullname || (!email && !phone) || !password || fullname.length === 0 || password.length < 8) {
             throw customError('Please enter the details correctly', 401);
         }
+
         const find = await User.findOne({ email })
         if (find) {
             throw customError('This email is already registered', 402);
         }
 
+        //  Verify OTP
+        if(email){
+            const recentOtp = await OTP.find({email}).sort({ createdAt: -1 }).limit(1);
+            if(!recentOtp || !recentOtp[0] || recentOtp[0].otp != otp){
+                throw customError('OTP does not matched', 400);
+            }
+        }
+        if(phone){
+            const recentOtp = await OTP.find({phone}).sort({ createdAt: -1 }).limit(1);
+            if(!recentOtp || !recentOtp[0] || recentOtp[0].otp != otp){
+                throw customError('OTP does not matched', 400);
+            }
+        }
+
         //  Perform task
         const hashPassword = await bcrypt.hash(password, 10);
-        const userObj = new User({
-            fullname, email, password: hashPassword,
-        })
-        await userObj.save();
+        
+        if(email){
+            const userObj = new User({
+                fullname, email, password: hashPassword,
+            })
+            await userObj.save();
+        }else if(phone){
+            const userObj = new User({
+                fullname, phone, password: hashPassword,
+            })
+            await userObj.save();
+        }
 
         //  Send Response
         res.status(200).json({
@@ -38,15 +62,29 @@ exports.signup = async (req, res) => {
 exports.signin = async (req, res) => {
     try {
         //  Fetching
-        const { email, password } = req.body;
+        const { email, phone, password } = req.body;
 
         //  Validation
-        if (!email || !password || email.length === 0 || password.length === 0) {
+        if ((!email && !phone) || !password || password.length === 0) {
             throw customError('Please enter the details correctly', 404);
         }
-        const user = await User.findOne({ email }).select('+password')
-        if (!user) {
-            throw customError('User does not exist', 404);
+
+        let user = null;
+        if(email){
+            user = await User.findOne({ email }).select('+password')
+            if (!user) {
+                throw customError('User does not exist', 404);
+            }
+
+        }
+        if(phone){
+            user = await User.findOne({ phone }).select('+password')
+            if (!user) {
+                throw customError('User does not exist', 404);
+            }
+        }
+        if(user === null){
+            throw customError('Email or Phone number is required', 401);
         }
         const check = await bcrypt.compare(password, user.password);
         if (!check) {
@@ -58,6 +96,7 @@ exports.signin = async (req, res) => {
             id: user._id,
             name: user.fullname,
             email: user.email,
+            phone: user.phone,
             userType: user.userType,
         }
         const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {
