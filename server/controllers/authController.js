@@ -159,6 +159,10 @@ const sendOTP = async (req, res) => {
             throw customError('Either phone number or email Id required', 400);
         }
 
+        if(phone){
+            throw customError('Phone OTP is not currently available');
+        }
+
         if (email) {
             const existingUser = await User.findOne({ email });
             if (existingUser) {
