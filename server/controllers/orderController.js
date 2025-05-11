@@ -158,6 +158,11 @@ exports.verifyMultiSignature = async (req, res) => {
 
         // Retrieve the Shiprocket API token
         const token = (await ShipToken.findOne({})).token;
+        if (!token) {
+            await generateToken();
+            token = (await ShipToken.findOne({})).token;
+        }
+        // Create the order in Shiprocket
         const email = user.email;
         const shiprocketResponse = await createOrder(order, email, token);
 

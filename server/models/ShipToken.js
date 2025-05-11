@@ -3,6 +3,7 @@ const { default: mongoose } = require("mongoose");
 const ShipTokenSchema = new mongoose.Schema({
     token: {
         type: String,
+        expires: '7d',
     }
 })
 

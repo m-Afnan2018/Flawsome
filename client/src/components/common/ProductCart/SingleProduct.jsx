@@ -83,10 +83,9 @@ const SingleProduct = ({ product, type }) => {
 
     const handleClick = () => {
         if (type === 'order') {
-            navigate(`/orders/${product.productId}`)
+            navigate(`/orders/${product.id}`)
             return;
         }
-        console.log(product);
         navigate(`/product/${product.productId}`)
     }
 

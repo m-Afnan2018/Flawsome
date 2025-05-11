@@ -5,7 +5,7 @@ const { failed, customError } = require("../utils/errorHandler")
 const axios = require('axios');
 
 
-exports.generateToken = async (req, res) => {
+exports.generateToken = async (req) => {
     try {
         //  Fetching
         const data = {
@@ -36,11 +36,11 @@ exports.generateToken = async (req, res) => {
             throw customError('Unable to get new Credentials', 501);
         }
 
-        //  Send Response
-        res.status(200).json({
-            success: true,
-            message: 'Successfully created new token'
-        })
+        // //  Send Response
+        // res.status(200).json({
+        //     success: true,
+        //     message: 'Successfully created new token'
+        // })
     } catch (err) {
         failed(res, err);
     }
