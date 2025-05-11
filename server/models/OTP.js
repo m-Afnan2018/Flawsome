@@ -42,30 +42,50 @@ async function sendVerificationEmail(email, otp) {
 
 async function sendVerificationPhone(phone, otp) {
     try {
-        console.log(phone);
-        console.log(otp);
-        // console.log(typeof(Number(otp)))
-        // return;
         var unirest = require("unirest");
 
-        var req = unirest("GET", "https://www.fast2sms.com/dev/bulkV2");
-
-        req.query({
-            // "authorization": '',
-            "authorization": process.env.FAST2SMSKEY,
-            "variables_values": Number(otp),
-            "route": "otp",
-            "numbers": `${phone}`
-        });
+        var req = unirest("POST", "https://www.fast2sms.com/dev/bulkV2");
 
         req.headers({
-            "cache-control": "no-cache"
+            "authorization": process.env.FAST2SMSKEY
         });
 
+        req.form({
+            "variables_values": otp,
+            "route": "otp",
+            "numbers": phone,
+        });
 
         req.end(function (res) {
+            if (res.error) throw new Error(res.error);
+
             console.log(res.body);
         });
+
+        // console.log(phone);
+        // console.log(otp);
+        // // console.log(typeof(Number(otp)))
+        // // return;
+        // var unirest = require("unirest");
+
+        // var req = unirest("GET", "https://www.fast2sms.com/dev/bulkV2");
+
+        // req.query({
+        //     // "authorization": '',
+        //     "authorization": process.env.FAST2SMSKEY,
+        //     "variables_values": Number(otp),
+        //     "route": "otp",
+        //     "numbers": `${phone}`
+        // });
+
+        // req.headers({
+        //     "cache-control": "no-cache"
+        // });
+
+
+        // req.end(function (res) {
+        //     console.log(res.body);
+        // });
     } catch (err) {
         console.log(err);
     }

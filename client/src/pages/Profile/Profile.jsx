@@ -9,6 +9,7 @@ import { updateUser } from 'services/operations/userAPI';
 import { setIsLogin, setToken, setUser } from 'slices/userSlice';
 import { addEmailOrPhone, getResetPasswordLink, getVerifyLink, sendOTP } from 'services/operations/authAPI';
 import { MdArrowBackIos } from 'react-icons/md';
+import toast from 'react-hot-toast';
 
 const Profile = () => {
     const [userData, setUserData] = useState({
@@ -32,7 +33,8 @@ const Profile = () => {
         handleSubmit,
         formState: { errors },
         setValue,
-        getValues
+        getValues,
+        getFieldState
     } = useForm();
 
     const imageRef = useRef();
@@ -86,6 +88,11 @@ const Profile = () => {
 
     const sendOtp = async (type) => {
         const value = type === 'EMAIL' ? getValues('email') : getValues('phone');
+        const validation = type === 'EMAIL' ? getFieldState('email').invalid: getFieldState('phone').invalid;
+        if(validation){
+            toast.error('Please enter correct details');
+            return;
+        }
         const response = await sendOTP({ [type.toLowerCase()]: value });
         if (response) {
             type === 'EMAIL' ? setEmailOtp(true) : setPhoneOtp(true);
@@ -192,11 +199,11 @@ const Profile = () => {
                                     })}
                                 />
                             </div>
-                            <div>
+                            <div className={style.OTPbuttons}>
                                 <p onClick={() => setPhoneOtp(false)}>Edit number</p>
                                 <p onClick={() => sendOtp('PHONE')}>Resend OTP</p>
                             </div>
-                            <button onClick={() => add('PHONE')}>
+                            <button className='border-round-btn' onClick={(e) => add(e, 'PHONE')}>
                                 Add Phone number
                             </button>
                         </div>}
