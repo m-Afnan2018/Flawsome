@@ -157,6 +157,7 @@ exports.verifyMultiSignature = async (req, res) => {
         });
 
         // Retrieve the Shiprocket API token
+        await generateToken();
         const token = (await ShipToken.findOne({})).token;
         if (!token) {
             await generateToken();
