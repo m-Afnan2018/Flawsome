@@ -159,9 +159,9 @@ const sendOTP = async (req, res) => {
             throw customError('Either phone number or email Id required', 400);
         }
 
-        if(phone){
-            throw customError('Phone OTP is not currently available');
-        }
+        // if(phone){
+        //     throw customError('Phone OTP is not currently available');
+        // }
 
         if (email) {
             const existingUser = await User.findOne({ email });
@@ -208,8 +208,63 @@ const sendOTP = async (req, res) => {
     }
 }
 
+const addEmailOrPhone = async (req, res) => {
+    try {
+        const { id } = req.user;
+        //  Fetching
+        const { email, phone, otp } = req.body;
+        //  Validation
+        if (!otp || (!email && !phone) ) {
+            throw customError('Please enter the details correctly', 401);
+        }
+
+        if(email){
+            const find = await User.findOne({ email })
+            if (find) {
+                throw customError('This email is already registered', 402);
+            }
+        }
+        if(phone){
+            const find = await User.findOne({ phone })
+            if (find) {
+                throw customError('This email is already registered', 402);
+            }
+        }
+
+        //  Verify OTP
+        if (email) {
+            const recentOtp = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
+            if (!recentOtp || !recentOtp[0] || recentOtp[0].otp != otp) {
+                throw customError('OTP does not matched', 400);
+            }
+            await User.findByIdAndUpdate(id, {
+                email: email,
+            })
+        }
+        if (phone) {
+            const recentOtp = await OTP.find({ phone }).sort({ createdAt: -1 }).limit(1);
+            if (!recentOtp || !recentOtp[0] || recentOtp[0].otp != otp) {
+                throw customError('OTP does not matched', 400);
+            }
+            await User.findByIdAndUpdate(id, {
+                phone: phone,
+            })
+        }
+
+        
+        //  Send Response
+        res.status(200).json({
+            success: true,
+            message: 'Added successfully'
+        })
+    } catch (err) {
+        failed(res, err)
+    }
+}
+
 exports.getVerifyLink = getVerifyLink;
 exports.verify = verify;
 exports.getResetPasswordLink = getResetPasswordLink;
 exports.resetPassword = resetPassword;
 exports.sendOTP = sendOTP;
+exports.addEmailOrPhone = addEmailOrPhone;

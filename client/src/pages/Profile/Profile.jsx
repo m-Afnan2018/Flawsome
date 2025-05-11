@@ -7,7 +7,7 @@ import AddressTile from 'components/common/Address/AddressTile';
 import { useNavigate } from 'react-router-dom';
 import { updateUser } from 'services/operations/userAPI';
 import { setIsLogin, setToken, setUser } from 'slices/userSlice';
-import { getResetPasswordLink, getVerifyLink } from 'services/operations/authAPI';
+import { addEmailOrPhone, getResetPasswordLink, getVerifyLink, sendOTP } from 'services/operations/authAPI';
 import { MdArrowBackIos } from 'react-icons/md';
 
 const Profile = () => {
@@ -17,6 +17,8 @@ const Profile = () => {
         phone: '',
         image: '',
     });
+    const [emailOtp, setEmailOtp] = useState(false);
+    const [phoneOtp, setPhoneOtp] = useState(false);
     const [edit, setEdit] = useState(null);
     const [adding, setAdding] = useState(false);
     const [address, setAddress] = useState([]);
@@ -30,6 +32,7 @@ const Profile = () => {
         handleSubmit,
         formState: { errors },
         setValue,
+        getValues
     } = useForm();
 
     const imageRef = useRef();
@@ -79,7 +82,25 @@ const Profile = () => {
         dispatch(setUser(null));
         dispatch(setIsLogin(false));
         localStorage.removeItem("loggedIn");
-    }
+    };
+
+    const sendOtp = async (type) => {
+        const value = type === 'EMAIL' ? getValues('email') : getValues('phone');
+        const response = await sendOTP({ [type.toLowerCase()]: value });
+        if (response) {
+            type === 'EMAIL' ? setEmailOtp(true) : setPhoneOtp(true);
+        }
+    };
+
+    const add = async (e, type) => {
+        e.preventDefault();
+        const value = getValues(type.toLowerCase());
+        const otp = getValues('otp');
+        await addEmailOrPhone({ [type.toLowerCase()]: value, otp });
+        const updatedUserData = { ...user, [type.toLowerCase()]: value };
+        dispatch(setUser(updatedUserData));
+        type === 'EMAIL' ? setEmailOtp(false) : setPhoneOtp(false);
+    };
 
     return (
         <div className={style.Profile}>
@@ -114,10 +135,36 @@ const Profile = () => {
                             <input
                                 type="email"
                                 name="email"
-                                value={userData.email}
-                                disabled
+                                {...register('email', {
+                                    required: 'Email is required',
+                                    pattern: {
+                                        value: /\S+@\S+\.\S+/,
+                                        message: 'Invalid email address',
+                                    },
+                                })}
+                                disabled={userData.email || emailOtp}
                             />
+                            {!userData.email && !emailOtp && <p onClick={() => sendOtp('EMAIL')}>Add Email</p>}
                         </div>
+                        {emailOtp && <div className={style.otpSection}>
+                            <div>
+                                <label htmlFor="otp">OTP</label>
+                                <input
+                                    type="text"
+                                    name="text"
+                                    {...register('otp', {
+                                        required: 'OTP is required',
+                                    })}
+                                />
+                            </div>
+                            <div className={style.OTPbuttons}>
+                                <p onClick={() => setEmailOtp(false)}>Edit Email</p>
+                                <p onClick={() => sendOtp('EMAIL')}>Resend OTP</p>
+                            </div>
+                            <button className='border-round-btn' onClick={(e) => add(e, 'EMAIL')}>
+                                Add email
+                            </button>
+                        </div>}
                         <div>
                             <label htmlFor="phone">Phone</label>
                             <input
@@ -129,10 +176,30 @@ const Profile = () => {
                                         message: 'Invalid phone number',
                                     },
                                 })}
-                                disabled={!isEditing}
+                                disabled={userData.phone || phoneOtp}
                             />
+                            {!userData.phone && !phoneOtp && <p onClick={() => sendOtp('PHONE')}>Add phone number</p>}
                             {errors.phone && <span className={style.error}>{errors.phone.message}</span>}
                         </div>
+                        {phoneOtp && <div>
+                            <div>
+                                <label htmlFor="otp">OTP</label>
+                                <input
+                                    type="text"
+                                    name="text"
+                                    {...register('otp', {
+                                        required: 'OTP is required',
+                                    })}
+                                />
+                            </div>
+                            <div>
+                                <p onClick={() => setPhoneOtp(false)}>Edit number</p>
+                                <p onClick={() => sendOtp('PHONE')}>Resend OTP</p>
+                            </div>
+                            <button onClick={() => add('PHONE')}>
+                                Add Phone number
+                            </button>
+                        </div>}
                         {isEditing ? (
                             <div style={{ display: 'flex', gap: '1rem' }}>
                                 <button className='border-round-btn' type="submit">Save</button>

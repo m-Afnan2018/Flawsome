@@ -65,6 +65,10 @@ const Booking = () => {
     }
 
     const handleOnline = async () => {
+        if(user.email === null){
+            toast.error('Please add email ID before login');
+            return;
+        }
         if (select === null) {
             toast.error('Select Any Address');
             return;

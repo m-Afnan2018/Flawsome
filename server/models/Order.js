@@ -192,8 +192,10 @@ const orderSchema = new mongoose.Schema({
 orderSchema.post('save', async function (doc, next) {
     try {
         await this.constructor.populate(this, { path: 'user' });
-        mailSender(this.user.email, 'Flawsome - Order Status', orderStatusMail(this._id, this.orderType, this.orderDetails.status, this.user.fullname, 'View more information about your order in the below link.\nThank you for choosing us.'));
-        mailSender(process.env.SMTP_EMAIL, 'Flawsome - Order Status', orderStatusMail(this._id, this.orderType, this.orderDetails.status, this.user.fullname, 'View more information about your order in the below link.\nThank you for choosing us.'));
+        if(this.user.email !==  ''){
+            mailSender(this.user.email, 'Flawsome - Order Status', orderStatusMail(this._id, this.orderType, this.orderDetails.status, this.user.fullname, 'View more information about your order in the below link.\nThank you for choosing us.'));
+            // mailSender(process.env.SMTP_EMAIL, 'Flawsome - Order Status', orderStatusMail(this._id, this.orderType, this.orderDetails.status, this.user.fullname, 'View more information about your order in the below link.\nThank you for choosing us.'));
+        }
         next();
     } catch (err) {
         next();

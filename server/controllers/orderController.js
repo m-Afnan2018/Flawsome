@@ -75,6 +75,8 @@ exports.verifyMultiSignature = async (req, res) => {
         const { id: userId } = req.user;
 
         const cart = JSON.parse(cartObj);
+        const user = await User.findById(userId).session(session);
+        if (!user) throw customError('User not found', 404);
 
         //  Validation
         if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !addressId) {
@@ -156,7 +158,7 @@ exports.verifyMultiSignature = async (req, res) => {
 
         // Retrieve the Shiprocket API token
         const token = (await ShipToken.findOne({})).token;
-        const email = req.user.email;
+        const email = user.email;
         const shiprocketResponse = await createOrder(order, email, token);
 
         if (!shiprocketResponse || shiprocketResponse.status !== 200) {

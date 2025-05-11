@@ -25,7 +25,6 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
         unique: true
     },
     password: {
@@ -37,6 +36,7 @@ const userSchema = new mongoose.Schema({
     phone: {
         type: String,
         minlength: 10,
+        maxlength: 10,
     },
     createdAt: {
         type: Date,
@@ -72,7 +72,9 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.post('save', async function () {
-    await mailSender(this.email, 'Welcome to Flawsome', welcomeMail(this.fullname));
+    if(this.email !== ''){
+        await mailSender(this.email, 'Welcome to Flawsome', welcomeMail(this.fullname));
+    }
 })
 
 module.exports = mongoose.model('User', userSchema);;

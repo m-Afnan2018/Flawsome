@@ -6,6 +6,7 @@ export const authEndpoints = {
     GET_RESET_PASSWORD_LINK: `${BASE_URL}/auth/getResetPasswordLink`,
     RESET_PASSWORD: `${BASE_URL}/auth/resetPassword`,
     SEND_OTP: `${BASE_URL}/auth/sendOTP`,
+    ADD_EMAIL_OR_PHONE: `${BASE_URL}/auth/addEmailOrPhone`,
 }
 
 export const userEndpoints = {

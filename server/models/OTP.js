@@ -42,16 +42,20 @@ async function sendVerificationEmail(email, otp) {
 
 async function sendVerificationPhone(phone, otp) {
     try {
+        console.log(phone);
+        console.log(otp);
+        // console.log(typeof(Number(otp)))
+        // return;
         var unirest = require("unirest");
 
         var req = unirest("GET", "https://www.fast2sms.com/dev/bulkV2");
 
         req.query({
             // "authorization": '',
-            "authorization": process.env.Fast2SmsKey,
-            "variables_values": otp,
+            "authorization": process.env.FAST2SMSKEY,
+            "variables_values": Number(otp),
             "route": "otp",
-            "numbers": phone
+            "numbers": `${phone}`
         });
 
         req.headers({

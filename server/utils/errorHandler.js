@@ -5,6 +5,7 @@ const error = (message, code)=>{
 }
 
 const failed = (response, error)=>{
+    console.log(error)
     response.status(error.code ? error.code : 500).json({
         success: false,
         message: error.message,

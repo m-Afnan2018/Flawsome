@@ -3,6 +3,7 @@ import style from './Cart.module.css'
 import { useSelector } from 'react-redux';
 import ProductCart from 'components/common/ProductCart/ProductCart';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Cart = () => {
 
@@ -11,6 +12,7 @@ const Cart = () => {
     const navigate = useNavigate();
 
     const { cart } = useSelector(state => state.products);
+    const { user } = useSelector(state => state.user);
 
     useEffect(() => {
         let total = 0;
@@ -21,6 +23,14 @@ const Cart = () => {
             setTotalCost(total);
         }
     }, [cart]);
+
+    const handleClick = ()=>{
+        if(user.email === null){
+            toast.error('Please add email ID before login');
+            return;
+        }
+        navigate('/booking');
+    }
 
     if (!cart) {
         return <div className='loaderBg'><div className='loader'></div></div>
@@ -36,19 +46,19 @@ const Cart = () => {
                         <h3>Total Cost:</h3>
                         <h4>₹{totalCost}</h4>
                     </div>
-                    <div>
+                    {/* <div>
                         <h3>Delivery Charges:</h3>
                         <h4>₹40</h4>
-                    </div>
+                    </div> */}
                     <div>
-                        <h3>Delivery discount:</h3>
-                        <h4 style={{ color: 'red' }}>- ₹40</h4>
+                        <h3>Delivery Charges:</h3>
+                        <h4 style={{ color: 'red' }}> ₹0</h4>
                     </div>
                     <div>
                         <h3>Final Cost:</h3>
                         <h4>{totalCost}</h4>
                     </div>
-                    <button className='border-btn' onClick={() => navigate('/booking')}>Pay ₹{totalCost}</button>
+                    <button className='border-btn' onClick={handleClick}>Pay ₹{totalCost}</button>
                 </div>}
             </div>
         </div>
