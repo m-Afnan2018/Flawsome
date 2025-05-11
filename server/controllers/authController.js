@@ -227,14 +227,14 @@ const addEmailOrPhone = async (req, res) => {
         if(phone){
             const find = await User.findOne({ phone })
             if (find) {
-                throw customError('This email is already registered', 402);
+                throw customError('This number is already registered', 402);
             }
         }
 
         //  Verify OTP
         if (email) {
             const recentOtp = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
-            if (!recentOtp || !recentOtp[0] || recentOtp[0].otp != otp) {
+            if (!recentOtp || recentOtp[0].otp != otp) {
                 throw customError('OTP does not matched', 400);
             }
             await User.findByIdAndUpdate(id, {
@@ -243,7 +243,7 @@ const addEmailOrPhone = async (req, res) => {
         }
         if (phone) {
             const recentOtp = await OTP.find({ phone }).sort({ createdAt: -1 }).limit(1);
-            if (!recentOtp || !recentOtp[0] || recentOtp[0].otp != otp) {
+            if (!recentOtp || recentOtp[0].otp != otp) {
                 throw customError('OTP does not matched', 400);
             }
             await User.findByIdAndUpdate(id, {
