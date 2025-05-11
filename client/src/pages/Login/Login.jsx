@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import slideImages from 'assets/data/heroData'
+import toast from 'react-hot-toast';
 
 const Login = () => {
 	const {
@@ -16,10 +17,30 @@ const Login = () => {
 		formState: { errors },
 	} = useForm();
 
+	const [loginType, setLoginType] = useState('email');
+
 	const dispatch = useDispatch();
 
 	const onSubmit = (data) => {
-		signinUser(data, dispatch);
+		if (!data.email && !data.phone) {
+			toast.error('Please provide either an email or a phone number.');
+			return;
+		}
+		let newData;
+		if (loginType === 'email') {
+			newData = {
+				email: data.email,
+				password: data.password
+			}
+		}
+		if (loginType === 'phone') {
+			newData = {
+				phone: data.phone,
+				password: data.password
+			}
+		}
+
+		signinUser(newData, dispatch);
 	};
 
 	const [data, setData] = useState(slideImages);
@@ -64,13 +85,12 @@ const Login = () => {
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<h2>Login:</h2>
 					<div>
-						<div>
+						{loginType === 'email' ? <div>
 							<label htmlFor="email">Email</label>
 							<input
 								type="email"
 								id="email"
 								{...register('email', {
-									required: 'Email is required',
 									pattern: {
 										value: /\S+@\S+\.\S+/,
 										message: 'Invalid email address',
@@ -78,7 +98,22 @@ const Login = () => {
 								})}
 							/>
 							{errors.email && <span>{errors.email.message}</span>}
-						</div>
+						</div> :
+							<div>
+								<label htmlFor="email">Phone number</label>
+								<input
+									type="text"
+									id="phone"
+									{...register('phone', {
+										pattern: {
+											value: /^\d{10}$/,
+											message: 'Invalid phone number',
+										},
+									})}
+								/>
+								{errors.phone && <span>{errors.phone.message}</span>}
+							</div>
+						}
 						<div>
 							<label htmlFor="password">Password</label>
 							<input
@@ -96,7 +131,9 @@ const Login = () => {
 						</div>
 					</div>
 					<button style={{ marginTop: '2rem', marginBottom: '2rem' }} type="submit" className='border-round-btn'>Login</button>
-					<div>
+					{loginType === 'email' && <p onClick={() => setLoginType('phone')} className={style.loginTypeButton}>Sign Up with Phone number</p>}
+					{loginType === 'phone' && <p onClick={() => setLoginType('email')} className={style.loginTypeButton}>Sign Up with Email ID</p>}
+					<div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
 						<Link className='border-round-btn' to={'/signup'}>Create Account</Link>
 						<Link className='border-round-btn' to={'/reset-password'}>Forget Password</Link>
 					</div>

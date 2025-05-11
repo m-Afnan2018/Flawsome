@@ -42,7 +42,7 @@ exports.generateToken = async (req) => {
         //     message: 'Successfully created new token'
         // })
     } catch (err) {
-        failed(res, err);
+        console.log(err);
     }
 }
 
