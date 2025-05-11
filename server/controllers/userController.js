@@ -152,6 +152,12 @@ exports.getUser = async (req, res) => {
 
         const payload = user
 
+        if(!user.isVerified){
+            await User.findByIdAndUpdate(id, {
+                isVerified: true
+            })
+        }
+
         //  Performing the task
         res.status(200).json({
             success: true,
