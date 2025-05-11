@@ -43,7 +43,7 @@ exports.createOrder = async (order, email, token) => {
         const data = JSON.stringify({
             order_id: order.orderDetails.public_order_id,
             order_date: getFormattedDateTime(order.orderDetails.order_date),
-            pickup_location: "Primary",
+            pickup_location: "Home",
             billing_customer_name: firstName,
             billing_last_name: lastName,
             billing_address: order.address.addressLine1,

@@ -157,8 +157,7 @@ exports.verifyMultiSignature = async (req, res) => {
         });
 
         // Retrieve the Shiprocket API token
-        await generateToken();
-        const token = (await ShipToken.findOne({})).token;
+        let token = (await ShipToken.findOne({})).token;
         if (!token) {
             await generateToken();
             token = (await ShipToken.findOne({})).token;
@@ -170,6 +169,8 @@ exports.verifyMultiSignature = async (req, res) => {
         if (!shiprocketResponse || shiprocketResponse.status !== 200) {
             throw customError('Failed to create order in Shiprocket', 500);
         } else {
+            console.log(shiprocketResponse)
+            console.log(shiprocketResponse.data.data)
             order.shiprocketDetails = {
                 order_id: shiprocketResponse.data.order_id
             }
@@ -536,7 +537,10 @@ exports.cancelMyOrder = async (req, res) => {
         if (order.status === 'DELIVERED') throw customError('Order cannot be cancelled now');
 
         // Cancel shipping order
-        const { token } = await ShipToken.findOne({});
+        let { token } = await ShipToken.findOne({});
+        if(!token){
+            await gene
+        }
         const response = await cancelOrder(order.shiprocketDetails.order_id, token);
 
         if (!response) throw customError('Unable to cancel the order', 501);
@@ -578,7 +582,11 @@ exports.cancelOrder = async (req, res) => {
         if (order.status === 'DELIVERED') throw customError('Order cannot be cancelled now');
 
         // Cancel shipping order
-        const { token } = await ShipToken.findOne({});
+        let token = (await ShipToken.findOne({})).token;
+        if (!token) {
+            await generateToken();
+            token = (await ShipToken.findOne({})).token;
+        }
         const response = await cancelOrder(order.shiprocketDetails.order_id, token);
         if (!response) throw customError('Unable to cancel the order', 501);
         if (response?.data?.order_id) {
