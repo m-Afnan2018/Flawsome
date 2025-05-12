@@ -50,7 +50,11 @@ exports.handleOrder = async (req, res) => {
     try {
         console.log("New Request from shiprocket",req)
         //  Fetching
-        const { awb, current_status, order_id, etd } = req.body;
+        let { awb, current_status, order_id, etd } = req.body;
+        
+        if(etd instanceof Date && !isNaN(value)){
+            etd = Date.now();
+        }
 
         const order = await Order.findOneAndUpdate({ 'orderDetails.public_order_id': order_id }, {
             orderDetails: {
@@ -72,7 +76,7 @@ exports.handleOrder = async (req, res) => {
             message: 'Updated Order'
         })
     } catch (err) {
-        console.log(err);
+        console.log("Shiprocket Handle Error: -", err);
         res.status(200).json({
             success: true,
             message: 'Updated Order'
