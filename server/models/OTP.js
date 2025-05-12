@@ -15,8 +15,8 @@ const otpSchema = new mongo.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now(),
-        expires: '15m',
+        default: Date.now,
+        expires: '15m', // Reverted expiration time to 15 minutes
     }
 })
 

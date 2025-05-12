@@ -131,8 +131,8 @@ const Login = () => {
 						</div>
 					</div>
 					<button style={{ marginTop: '2rem', marginBottom: '2rem' }} type="submit" className='border-round-btn'>Login</button>
-					{loginType === 'email' && <p onClick={() => setLoginType('phone')} className={style.loginTypeButton}>Sign Up with Phone number</p>}
-					{loginType === 'phone' && <p onClick={() => setLoginType('email')} className={style.loginTypeButton}>Sign Up with Email ID</p>}
+					{loginType === 'email' && <p onClick={() => setLoginType('phone')} className={style.loginTypeButton}>Sign In with Phone number</p>}
+					{loginType === 'phone' && <p onClick={() => setLoginType('email')} className={style.loginTypeButton}>Sign In with Email ID</p>}
 					<div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
 						<Link className='border-round-btn' to={'/signup'}>Create Account</Link>
 						<Link className='border-round-btn' to={'/reset-password'}>Forget Password</Link>
