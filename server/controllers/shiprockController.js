@@ -72,6 +72,7 @@ exports.handleOrder = async (req, res) => {
             message: 'Updated Order'
         })
     } catch (err) {
+        console.log(err);
         res.status(200).json({
             success: true,
             message: 'Updated Order'
