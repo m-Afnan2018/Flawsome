@@ -48,12 +48,16 @@ exports.generateToken = async (req) => {
 
 exports.handleOrder = async (req, res) => {
     try {
-        console.log("New Request from shiprocket",req)
         //  Fetching
         let { awb, current_status, order_id, etd } = req.body;
-        
-        if(etd instanceof Date && !isNaN(value)){
-            etd = Date.now();
+
+        if (typeof etd === "string" && etd.trim() !== "") {
+            etd = new Date(etd.replace(" ", "T"));
+            if (isNaN(etd)) {
+                etd = new Date(); // fallback if invalid
+            }
+        } else {
+            etd = new Date(); // fallback if empty or not a string
         }
 
         const order = await Order.findOneAndUpdate({ 'orderDetails.public_order_id': order_id }, {
