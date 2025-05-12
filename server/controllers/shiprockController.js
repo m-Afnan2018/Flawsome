@@ -48,6 +48,7 @@ exports.generateToken = async (req) => {
 
 exports.handleOrder = async (req, res) => {
     try {
+        console.log("New Request from shiprocket",req)
         //  Fetching
         const { awb, current_status, order_id, etd } = req.body;
 
