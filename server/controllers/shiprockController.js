@@ -70,11 +70,18 @@ exports.handleOrder = async (req, res) => {
             }
         })
 
+        if (!order) {
+            return res.status(404).json({
+                success: false,
+                message: 'Order not found'
+            });
+        }
+
         const token = (await ShipToken.findOne({})).token;
 
         await generateInvoice(order_id, token);
-        await generateLable(order.shiprocket.shipment_id, token);
-        await printManifest(order.shiprocket.shipment_id, token);
+        await generateLable(order.shiprocketDetails.shipment_id, token);
+        await printManifest(order.shiprocketDetails.shipment_id, token);
         res.status(200).json({
             success: true,
             message: 'Updated Order'
