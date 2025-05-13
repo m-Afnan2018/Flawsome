@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const mailSender = require('../utils/mailSender');
 const orderStatusMail = require('../mails/orderStatus');
+const newOrderMail = require('../mails/newOrder');
 
 const addressSchema = new mongoose.Schema({
     name: {
@@ -194,7 +195,7 @@ orderSchema.post('save', async function (doc, next) {
         await this.constructor.populate(this, { path: 'user' });
         if(this.user.email !==  ''){
             mailSender(this.user.email, 'Flawsome - Order Status', orderStatusMail(this._id, this.orderType, this.orderDetails.status, this.user.fullname, 'View more information about your order in the below link.\nThank you for choosing us.'));
-            // mailSender(process.env.SMTP_EMAIL, 'Flawsome - Order Status', orderStatusMail(this._id, this.orderType, this.orderDetails.status, this.user.fullname, 'View more information about your order in the below link.\nThank you for choosing us.'));
+            mailSender('flawsome0510@gmail.com', 'Flawsome - New Order', newOrderMail);
         }
         next();
     } catch (err) {

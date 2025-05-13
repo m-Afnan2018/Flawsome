@@ -169,8 +169,6 @@ exports.verifyMultiSignature = async (req, res) => {
         if (!shiprocketResponse || shiprocketResponse.status !== 200) {
             throw customError('Failed to create order in Shiprocket', 500);
         } else {
-            console.log(shiprocketResponse)
-            console.log(shiprocketResponse.data.data)
             order.shiprocketDetails = {
                 order_id: shiprocketResponse.data.order_id
             }
