@@ -623,48 +623,6 @@ const orderStatusMail = (id, order, currentStatus, fullname, message) => {
                               border-bottom: 0px solid transparent;
                             "
                           ><!--<![endif]-->
-                            <table
-                              style="font-family: 'Montserrat', sans-serif"
-                              role="presentation"
-                              cellpadding="0"
-                              cellspacing="0"
-                              width="100%"
-                              border="0"
-                            >
-                              <tbody>
-                                <tr>
-                                  <td
-                                    style="
-                                      overflow-wrap: break-word;
-                                      word-break: break-word;
-                                      padding: 0px 33px 10px;
-                                      font-family: 'Montserrat', sans-serif;
-                                    "
-                                    align="left"
-                                  >
-                                    <div
-                                      style="
-                                        font-size: 14px;
-                                        color: #686d6d;
-                                        line-height: 210%;
-                                        text-align: center;
-                                        word-wrap: break-word;
-                                      "
-                                    >
-                                      <p style="line-height: 210%; font-size: 14px">
-                                        <span
-                                          style="
-                                            font-size: 14px;
-                                            line-height: 29.4px;
-                                          "
-                                          >Date Goes Here With or Without time</span
-                                        >
-                                      </p>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
     
                             <table
                               style="font-family: 'Montserrat', sans-serif"

@@ -8,17 +8,21 @@ const AboutUs = () => {
                 <h1>About Us</h1>
 
                 <div>
-                    <h2>Who we are and what we do</h2>
-                    <p>We are a passionate team dedicated to bringing you the finest sarees from across India. Our mission is to make traditional and contemporary sarees accessible to everyone, whether you're looking for a saree for a special occasion or everyday wear. At Saree Elegance, we provide you with a curated collection of sarees that celebrate the rich heritage of Indian craftsmanship.</p>
-                    <br />
-                    <h2>Our story</h2>
-                    <p>Founded in 2015, Saree Elegance began as a small boutique in Jaipur, Rajasthan, driven by a love for traditional Indian attire and a dream to share it with the world. Our founder, Priya Sharma, started the business from her home, initially catering to friends and family. Today, we’ve grown into a nationwide operation, delivering sarees to doorsteps across the country and beyond.</p>
-                    <br />
-                    <h2>Our team</h2>
-                    <p>Our team consists of expert designers, skilled artisans, and customer service specialists who are here to assist you. Meet Anjali, our Head Designer, who has over 15 years of experience in saree design. Ramesh, our Customer Service Lead, ensures that your experience with us is seamless and satisfying.</p>
-                    <br />
-                    <h2>Why choose us</h2>
-                    <p>We stand out because of our commitment to quality and authenticity. All our sarees are sourced directly from skilled weavers and trusted suppliers. We offer personalized styling advice, easy-to-follow care guides, and the best after-purchase support. Choose Saree Elegance to bring timeless elegance and tradition into your wardrobe with ease and expertise.</p>
+                    <p>Flawsome is dedicated in providing high-quality sarees. The sarees are for all ages, styles, seasons and occasions. The hard work and dedication of our weavers can be seen. You will discover the most appropriate trends has been made available for you. Pick up the one you desire and make them yours. You have full options available to enhance your wardrobe, making your special event sparkle.
+                        <br />
+                        <br />
+                        We are providing wide range of handloom, kaantha hand embroidery,  madhubani hand painting, tusshar, cotton,  silk , lumbani,dhakai, Jamdhani, taanth, linen, raw silk, gotta wedding or festive pure cotton chundari saree and many many more.
+                        <br />
+                        <br />
+                        On behalf of FLAWSOME we  welcome you to be a part of our family ..
+                        <br />
+                        <br />
+                        For any queries, suggestions and feedback you can call,email or message us.
+                        For any requirements or bulk purchase you can also get in touch with us.
+                        <br />
+                        <br />
+                        Thank you once again and enjoy your hassle free shopping! </p>
+
                 </div>
             </div>
         </div>

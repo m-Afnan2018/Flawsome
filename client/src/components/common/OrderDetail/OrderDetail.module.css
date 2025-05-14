@@ -3,6 +3,10 @@
     padding-top: 0;
 }
 
+.OrderDetail *{
+    font-family: 'Lora';
+}
+
 .OrderDetail>h3 {
     font-size: 2rem;
     color: var(--delft-blue);

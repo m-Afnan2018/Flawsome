@@ -8,6 +8,7 @@ import { MdClose, MdOutlineAccountCircle, MdOutlineAdminPanelSettings, MdOutline
 import { useSelector } from 'react-redux'
 import useOnClickOutside from 'hooks/useOnClickOutside'
 import dashboardLink from 'assets/data/dashboardLinks'
+import { BiHomeAlt2 } from "react-icons/bi";
 
 const NavBar = () => {
     const navigate = useNavigate();
@@ -77,6 +78,7 @@ const NavBar = () => {
                 <img src={searchBar && window.innerWidth < 600 ? shortLogo : longLogo} onClick={() => navigate('/')} alt='logo' />
                 <div>
                     {/* <MdOutlineSearch style={{ display: searchBar ? 'none' : 'flex' }} onClick={() => setSearchBar(!searchBar)} /> */}
+                    {location.pathname !== '/' && <BiHomeAlt2 onClick={() => navigate('/')} />}
                     {user?.userType === 'Admin' && <MdOutlineAdminPanelSettings onClick={() => navigate('/admin/dashboard')} className={style.hide} />}
                     {token && <MdOutlineFavoriteBorder className={style.hide} onClick={() => navigate('/wishlist')} />}
                     {token && <MdOutlineShoppingBag className={style.hide} onClick={() => navigate('/cart')} />}

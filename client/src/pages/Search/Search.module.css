@@ -5,7 +5,7 @@
 
 .sideBar {
     width: max(20%, 300px);
-    background: var(--delft-blue);
+    background: linear-gradient(90deg, #220921, #110510);
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -15,18 +15,18 @@
     bottom: 0;
 }
 
-.sideBar button{
+.sideBar button {
     font-family: 'Inter';
     font-weight: 400;
     padding: 0.25rem;
     border-radius: 0.5rem;
 }
-.sideBar button:hover{
+
+.sideBar button:hover {
     background-color: var(--burnt-sienna);
 }
 
-.sideBar 
-select {
+.sideBar select {
     width: 100% !important;
     min-width: auto !important;
     font-family: 'Inter';
@@ -63,6 +63,7 @@ select {
         overflow-x: auto;
         width: 100%;
         padding: 0.5rem 1rem;
+        background: linear-gradient(90deg, #391137, #552752 53%, #a970a4);
     }
 
     .sideBar>div {

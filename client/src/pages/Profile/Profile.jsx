@@ -238,6 +238,7 @@ const Profile = () => {
                     {!userData.isVerified && <button className='border-round-btn' onClick={getVerifyLink}>Verify My Account</button>}
                     <button className='border-round-btn' onClick={() => getResetPasswordLink({ email: userData.email })}>Reset My Password</button>
                     <button className='border-round-btn' onClick={handleLogout}>Log out</button>
+                    <button className='border-round-btn' onClick={()=>navigate('/')}>Go home</button>
                 </div>
             </div>
         </div>

@@ -5,7 +5,9 @@
     gap: 1rem;
     padding: 2rem;
     color: var(--delft-blue);
-    background: var(--delft-blue);
+    /* background: var(--delft-blue); */
+    background: linear-gradient(180deg, transparent, #250a23), linear-gradient(90deg, rgb(34 9 33) 0%, rgb(1 1 1) 50%, rgb(197 148 193) 100%);
+    z-index: 1;
 }
 
 .Utils>div {
@@ -13,7 +15,7 @@
     width: 100%;
     flex-grow: 1;
     background-color: var(--sunset);
-    padding: .5rem;
+    padding: 0.5rem 2.5rem;
     gap: 1rem;
     display: flex;
     flex-direction: column;
@@ -48,6 +50,9 @@
     color: var(--delft-blue);
     text-align: center;
     font-weight: 900;
+    font-family: 'Lora';
+    text-transform: uppercase;
+    text-decoration: underline;
 }
 
 .Utils ul {
@@ -57,12 +62,14 @@
 }
 
 .Utils a {
-    text-transform: lowercase;
+    text-transform: capitalize;
+    text-decoration: underline;
 }
 
 .Utils p {
-    font-weight: 600;
+    font-weight: 400;
     text-align: left;
+    font-family: 'Inter';
 }
 
 .Utils .utilImages {
@@ -102,6 +109,9 @@
 }
 
 @media (max-width: 480px) {
+    .Utils>div {
+        padding: 0.5rem;
+    }
     .Utils .utilImages {
         flex-direction: column;
     }

@@ -23,21 +23,21 @@ const Signup = () => {
     const [loginType, setLoginType] = useState('email');
     const [saveData, setSaveData] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         setValue('fullname', '')
         setValue('email', '')
         setValue('phone', '')
         setValue('password', '')
         setValue('confirmPassword', '')
         setValue('otp', '')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loginType])
 
 
     const password = watch('password');
     const navigate = useNavigate();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         // Handle form submission logic here
 
         if (saveData) {
@@ -45,11 +45,16 @@ const Signup = () => {
             return;
         }
         if (loginType === 'email') {
-            sendOTP({ email: data.email });
+            const temp = await sendOTP({ email: data.email });
+            if (temp) {
+                setSaveData(data);
+            }
         } else {
-            sendOTP({ phone: data.phone });
+            const temp = await sendOTP({ phone: data.phone });
+            if (temp) {
+                setSaveData(data);
+            }
         }
-        setSaveData(data);
     };
 
     const resendOTP = () => {
@@ -218,8 +223,9 @@ const Signup = () => {
                         <p onClick={() => setSaveData(false)}> Edit Data</p>
                         <p onClick={resendOTP}> Resend OTP</p>
                     </div>}
+                    {saveData && <p style={{ fontFamily: 'Inter', textDecoration: 'unset', fontWeight: '700', fontSize: '0.75rem' }}>Check the Spam folder if you didn't reiceved</p>}
                     <button type="submit" className='border-round-btn'>{saveData ? 'Sign Up' : 'Send OTP'}</button>
-                    {loginType === 'email' && <p onClick={() => setLoginType('phone')} className={style.loginTypeButton}>Sign Up with Phone number</p>}
+                    {/* {loginType === 'email' && <p onClick={() => setLoginType('phone')} className={style.loginTypeButton}>Sign Up with Phone number</p>} */}
                     {loginType === 'phone' && <p onClick={() => setLoginType('email')} className={style.loginTypeButton}>Sign Up with Email ID</p>}
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <Link className='border-round-btn' to='/login'>Login</Link>
