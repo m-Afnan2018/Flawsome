@@ -3,7 +3,11 @@ const { default: mongoose } = require("mongoose");
 const ShipTokenSchema = new mongoose.Schema({
     token: {
         type: String,
-        expires: '7d',
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        expires: '7d', // Document will be deleted 7 days after creation
     }
 })
 
