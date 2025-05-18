@@ -135,6 +135,10 @@ const ProductDetail = ({ product }) => {
     }
 
     const addToWishlist = async () => {
+         if (!user) {
+            toast.error('Please login first');
+            return;
+         }
         if (!selectedSize) {
             toast.error('Select the size');
             return;
